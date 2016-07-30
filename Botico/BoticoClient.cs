@@ -13,6 +13,7 @@ namespace Botico
 		public static string Path => AppDomain.CurrentDomain.BaseDirectory + "/Botico/";
 		public static string PathLangs => Path + "langs/";
 		public static string PathConfig => Path + "config.json";
+		public static string Version => "0.0.2";
 
 		public char? CommandSymbol { get; set; }
 		public string ClientName { get; set; }
@@ -28,6 +29,7 @@ namespace Botico
 			UseMarkdown = useMarkdown;
 
 			Commands.Add(new CommandHelp());
+			Commands.Add(new CommandBotico());
 		}
 
 		public string UseCommand(string command, string sender, bool inGroupChat)

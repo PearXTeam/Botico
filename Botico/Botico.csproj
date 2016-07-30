@@ -33,6 +33,7 @@
     <Compile Include="Commands\CommandHelp.cs" />
     <Compile Include="BoticoConfig.cs" />
     <Compile Include="EmbeddedLangs.cs" />
+    <Compile Include="Commands\CommandBotico.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PearXLib\PearXLib\PearXLib.csproj">
