@@ -22,7 +22,7 @@ namespace Botico.Commands
 				case 1:
 					if (args.Args[0] == args.Botico.Loc.GetString("command.wiki.random"))
 					{
-						var wikiSource = args.Botico.Config.WikiSources[args.Random.Next(args.Botico.Config.WikiSources.Length - 1, args.Botico.Config.WikiSources.Length)];
+						var wikiSource = args.Botico.Config.WikiSources[args.Random.Next(0, args.Botico.Config.WikiSources.Length)];
 						HttpWebRequest req = (HttpWebRequest)WebRequest.Create(wikiSource.RandomURL);
 						req.AllowAutoRedirect = false;
 						req.Method = "HEAD";

@@ -1,5 +1,4 @@
-﻿using System;
-namespace Botico
+﻿namespace Botico
 {
 	public static class EmbeddedLangs
 	{
@@ -25,6 +24,7 @@ command.addThing.names=вещь,thing,addthing,add_thing,добавитьвещ�
 command.addThing=Вещь '%thing' успешно добавлена.
 command.addThing.usage=Использование команды: %cmd <вещь>.
 command.addThing.tooLong=Попробуй добавить что-нибудь поменьше.
+command.addThing.exists=У меня уже есть это.
 
 command.wiki.names=вики,википедия,wiki,wikipedia
 command.wiki.usage=Использование команды: %cmd <рандом|список>
