@@ -27,8 +27,10 @@ command.addThing.usage=Использование команды: %cmd <вещь
 command.addThing.tooLong=Попробуй добавить что-нибудь поменьше.
 
 command.wiki.names=вики,википедия,wiki,wikipedia
-command.wiki.usage=Использование команды: %cmd рандом
+command.wiki.usage=Использование команды: %cmd <рандом|список>
 command.wiki.random=рандом
+command.wiki.list=список
+command.wiki.wikis=Подключены следующие вики: 
 
 command.roulette.names=русскаярулетка,рулетка,russianroulette,roulette,русская рулетка,russian roulette
 command.roulette.fail=Выстрел! Вы падаете замертво.

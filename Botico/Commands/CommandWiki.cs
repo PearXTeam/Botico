@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Text;
 using Botico.Model;
 using Newtonsoft.Json;
 using PearXLib;
@@ -34,6 +35,19 @@ namespace Botico.Commands
 								return shorten + " - " + "```\n" + name + "\n```";
 							return shorten + " - " + name;
 						}
+					}
+					else if (args.Args[0] == args.Botico.Loc.GetString("command.wiki.list"))
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.Append(args.Botico.Loc.GetString("command.wiki.wikis"));
+						foreach (WikiSource src in args.Botico.Config.WikiSources)
+						{
+							sb.Append(src.FriendlyName);
+							sb.Append(", ");
+						}
+						sb.Remove(sb.Length - 2, 2);
+						sb.Append(".");
+						return sb.ToString();
 					}
 					return args.Botico.Loc.GetString("command.wiki.usage").Replace("%cmd", cmdSymbol + args.Command);
 				default:

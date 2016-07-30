@@ -14,7 +14,7 @@ namespace Botico
 		public static string Path => AppDomain.CurrentDomain.BaseDirectory + "/Botico/";
 		public static string PathLangs => Path + "langs/";
 		public static string PathConfig => Path + "config.json";
-		public static string Version => "0.2.0";
+		public static string Version => "1.0.0";
 
 		public char? CommandSymbol { get; set; }
 		public string ClientName { get; set; }
