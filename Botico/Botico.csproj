@@ -29,15 +29,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BoticoClient.cs" />
     <Compile Include="ICommand.cs" />
-    <Compile Include="CommandArgs.cs" />
     <Compile Include="Commands\CommandHelp.cs" />
-    <Compile Include="BoticoConfig.cs" />
     <Compile Include="EmbeddedLangs.cs" />
     <Compile Include="Commands\CommandBotico.cs" />
     <Compile Include="Commands\CommandRandom.cs" />
     <Compile Include="Commands\CommandAddThing.cs" />
     <Compile Include="Commands\CommandThings.cs" />
-    <Compile Include="BoticoElement.cs" />
+    <Compile Include="Commands\CommandWiki.cs" />
+    <Compile Include="Commands\CommandRussianRoulette.cs" />
+    <Compile Include="Model\BoticoConfig.cs" />
+    <Compile Include="Model\CommandArgs.cs" />
+    <Compile Include="Model\WikiSource.cs" />
+    <Compile Include="Model\BoticoElement.cs" />
+    <Compile Include="Commands\CommandQuestion.cs" />
+    <Compile Include="BoticoUtils.cs" />
+    <Compile Include="Commands\CommandAnswer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PearXLib\PearXLib\PearXLib.csproj">
@@ -47,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
+    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

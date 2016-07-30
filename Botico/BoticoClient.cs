@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Botico.Commands;
+using Botico.Model;
 using Newtonsoft.Json;
 using PearXLib;
 
@@ -24,6 +25,7 @@ namespace Botico
 		public Random Rand = new Random();
 
 		public CommandThings CommandThings = new CommandThings();
+		public CommandQuestion CommandQuestion = new CommandQuestion();
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:Botico.BoticoClient"/> class.
@@ -42,6 +44,10 @@ namespace Botico
 			Commands.Add(new CommandRandom());
 			Commands.Add(CommandThings);
 			Commands.Add(new CommandAddThing());
+			Commands.Add(new CommandWiki());
+			Commands.Add(new CommandRussianRoulette());
+			Commands.Add(CommandQuestion);
+			Commands.Add(new CommandAnswer());
 		}
 
 		/// <summary>
@@ -83,7 +89,7 @@ namespace Botico
 						Command = cmdName,
 						JoinedArgs = args,
 						Args = useArgs ? args.Split(' ') : new string[] { },
-						IsOwner = Config.Owners.ToList().Contains(sender), 
+						IsOwner = BoticoUtils.IsOwner(sender, Config), 
 						Botico = this,
 						Random = Rand
 					});
@@ -104,10 +110,27 @@ namespace Botico
 			if (File.Exists(PathConfig))
 				Config = JsonConvert.DeserializeObject<BoticoConfig>(File.ReadAllText(PathConfig));
 			else
-				Config = new BoticoConfig { Language = "ru_RU", Owners = new string[] { "183388312" } };
+			{
+				Config = new BoticoConfig
+				{
+					Language = "ru_RU",
+					Owners = new string[] { "183388312" },
+					WikiSources = new WikiSource[] { new WikiSource
+						{
+							Name = "wikipedia",
+							RandomURL = "https://en.wikipedia.org/wiki/Special:Random",
+							URL = "https://en.wikipedia.org/wiki/" ,
+							FriendlyName = "WikiPedia"
+						} },
+					GoogleURLShortenerKey = "put_your_key_here"
+				};
+			}
 
 			if (File.Exists(CommandThings.PathThings))
 				CommandThings.Things = JsonConvert.DeserializeObject<List<BoticoElement>>(File.ReadAllText(CommandThings.PathThings));
+
+			if (File.Exists(CommandQuestion.PathQuestions))
+				CommandQuestion.Questions = JsonConvert.DeserializeObject<Dictionary<string, BoticoElement>>(File.ReadAllText(CommandQuestion.PathQuestions));
 
 			Loc = new Localization(PathLangs, Config.Language, "ru_RU");
 		}

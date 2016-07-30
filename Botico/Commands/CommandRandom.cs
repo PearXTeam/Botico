@@ -1,4 +1,5 @@
 ﻿using System;
+using Botico.Model;
 using PearXLib;
 
 namespace Botico.Commands

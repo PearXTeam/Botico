@@ -24,7 +24,25 @@ command.things=У меня есть следующие вещи:
 command.addThing.names=вещь,thing,addthing,add_thing,добавитьвещь,добавить_вещь
 command.addThing=Вещь '%thing' успешно добавлена.
 command.addThing.usage=Использование команды: %cmd <вещь>.
-command.addThing.tooLong=Попробуй добавить что-нибудь поменьше.";
+command.addThing.tooLong=Попробуй добавить что-нибудь поменьше.
+
+command.wiki.names=вики,википедия,wiki,wikipedia
+command.wiki.usage=Использование команды: %cmd рандом
+command.wiki.random=рандом
+
+command.roulette.names=русскаярулетка,рулетка,russianroulette,roulette,русская рулетка,russian roulette
+command.roulette.fail=Выстрел! Вы падаете замертво.
+command.roulette.win=Выстрел! Вы живы...
+
+command.question.names=вопрос,question
+
+command.answer.names=ответ,нбо,answer
+command.answer=Буду знать.
+command.answer.notAsked=Ты не задал мне вопрос.
+command.answer.incorrectUsage=Ты не написал ответ.
+command.answer.notPermitted=Ты не Мой Господин.
+
+answers=Да;Нет;Наверное;Возможно;Скорее да, чем нет;Скорее нет, чем да;А ты как думаешь?;Ну я даже не знаю...";
 		public static string ru_RU_info = "Russian (Русский)";
 	}
 }

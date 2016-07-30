@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Botico
+namespace Botico.Model
 {
 	public class CommandArgs
 	{

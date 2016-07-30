@@ -1,6 +1,4 @@
-﻿
-
-namespace Botico
+﻿namespace Botico.Model
 {
 	public class BoticoElement
 	{

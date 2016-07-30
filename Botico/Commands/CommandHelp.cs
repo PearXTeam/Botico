@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Botico.Model;
 
 namespace Botico.Commands
 {

@@ -1,4 +1,6 @@
 ﻿using System;
+using Botico.Model;
+
 namespace Botico
 {
 	public interface ICommand
