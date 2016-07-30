@@ -32,13 +32,13 @@ namespace Botico
 
 		public string UseCommand(string command, string sender, bool inGroupChat)
 		{
+			if (string.IsNullOrEmpty(command)) return "";
+
 			if (CommandSymbol != null)
 			{
-				if (command[0] != CommandSymbol)
-				{
-					return "";
-				}
+				if (command[0] != CommandSymbol) return "";
 				command = command.Remove(0, 1);
+				if (string.IsNullOrEmpty(command)) return "";
 				if (command[0] == ' ')
 					command = command.Remove(0, 1);
 			}
