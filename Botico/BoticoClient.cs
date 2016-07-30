@@ -21,7 +21,14 @@ namespace Botico
 		public Localization Loc;
 		public BoticoConfig Config;
 		public List<ICommand> Commands = new List<ICommand>();
+		public Random Rand = new Random();
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:Botico.BoticoClient"/> class.
+		/// </summary>
+		/// <param name="cmdSymbol">Your command start symbol. For example '/'.</param>
+		/// <param name="clientName">Botico client name. For example "BotConsole for Windows".</param>
+		/// <param name="useMarkdown">Use markdown?</param>
 		public BoticoClient(char? cmdSymbol, string clientName, bool useMarkdown)
 		{
 			CommandSymbol = cmdSymbol;
@@ -30,8 +37,16 @@ namespace Botico
 
 			Commands.Add(new CommandHelp());
 			Commands.Add(new CommandBotico());
+			Commands.Add(new CommandRandom());
 		}
 
+		/// <summary>
+		/// Send command to the Botico.
+		/// </summary>
+		/// <returns>The commmand return message.</returns>
+		/// <param name="command">Command.</param>
+		/// <param name="sender">Command sender.</param>
+		/// <param name="inGroupChat">Is command sent in group chat?</param>
 		public string UseCommand(string command, string sender, bool inGroupChat)
 		{
 			if (string.IsNullOrEmpty(command)) return "";
@@ -57,12 +72,25 @@ namespace Botico
 						useArgs = true;
 					}
 					string args = useArgs ? command.Substring(cmdName.Length + 1) : "";
-					return cmd.OnUse(new CommandArgs { FullCommand = command, InGroupChat = inGroupChat, Sender = sender, Command = cmdName, JoinedArgs = args, Args = args.Split(' '), IsOwner = Config.Owners.ToList().Contains(sender), Botico = this });
+					return cmd.OnUse(new CommandArgs {
+						FullCommand = command,
+						InGroupChat = inGroupChat,
+						Sender = sender,
+						Command = cmdName,
+						JoinedArgs = args,
+						Args = useArgs ? args.Split(' ') : new string[] { },
+						IsOwner = Config.Owners.ToList().Contains(sender), 
+						Botico = this,
+						Random = Rand
+					});
 				}
 			}
 			return "";
 		}
 
+		/// <summary>
+		/// Initialize Botico.
+		/// </summary>
 		public void Init()
 		{
 			Directory.CreateDirectory(PathLangs);
@@ -79,6 +107,9 @@ namespace Botico
 			Loc = new Localization(PathLangs, Config.Language, "ru_RU");
 		}
 
+		/// <summary>
+		/// End Botico.
+		/// </summary>
 		public void End()
 		{
 			File.WriteAllText(PathConfig, JsonConvert.SerializeObject(Config, Formatting.Indented));
