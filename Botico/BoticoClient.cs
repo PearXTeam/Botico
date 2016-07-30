@@ -23,6 +23,8 @@ namespace Botico
 		public List<ICommand> Commands = new List<ICommand>();
 		public Random Rand = new Random();
 
+		public CommandThings CommandThings = new CommandThings();
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:Botico.BoticoClient"/> class.
 		/// </summary>
@@ -38,6 +40,8 @@ namespace Botico
 			Commands.Add(new CommandHelp());
 			Commands.Add(new CommandBotico());
 			Commands.Add(new CommandRandom());
+			Commands.Add(CommandThings);
+			Commands.Add(new CommandAddThing());
 		}
 
 		/// <summary>
@@ -96,14 +100,15 @@ namespace Botico
 			Directory.CreateDirectory(PathLangs);
 			File.WriteAllText(PathLangs + "ru_RU.lang", EmbeddedLangs.ru_RU);
 			File.WriteAllText(PathLangs + "ru_RU.langinfo", EmbeddedLangs.ru_RU_info);
+
 			if (File.Exists(PathConfig))
-			{
 				Config = JsonConvert.DeserializeObject<BoticoConfig>(File.ReadAllText(PathConfig));
-			}
 			else
-			{
 				Config = new BoticoConfig { Language = "ru_RU", Owners = new string[] { "183388312" } };
-			}
+
+			if (File.Exists(CommandThings.PathThings))
+				CommandThings.Things = JsonConvert.DeserializeObject<List<BoticoElement>>(File.ReadAllText(CommandThings.PathThings));
+
 			Loc = new Localization(PathLangs, Config.Language, "ru_RU");
 		}
 
