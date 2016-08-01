@@ -24,6 +24,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\pxvkb\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -44,6 +45,8 @@
     <Compile Include="Commands\CommandQuestion.cs" />
     <Compile Include="BoticoUtils.cs" />
     <Compile Include="Commands\CommandAnswer.cs" />
+    <Compile Include="Commands\CommandImage.cs" />
+    <Compile Include="Model\BoticoResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PearXLib\PearXLib\PearXLib.csproj">

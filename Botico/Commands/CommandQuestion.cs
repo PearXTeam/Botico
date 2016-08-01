@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Botico.Model;
 
@@ -16,7 +16,7 @@ namespace Botico
 			return b.Loc.GetString("command.question.names").Split(',');
 		}
 
-		public string OnUse(CommandArgs args)
+		public BoticoResponse OnUse(CommandArgs args)
 		{
 			string q = BoticoUtils.GetShortQuestion(args.JoinedArgs);
 			QuestionCache[args.Sender] = q;

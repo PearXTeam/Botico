@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Botico.Commands;
 using Botico.Model;
 using Newtonsoft.Json;
@@ -14,7 +13,7 @@ namespace Botico
 		public static string Path => AppDomain.CurrentDomain.BaseDirectory + "/Botico/";
 		public static string PathLangs => Path + "langs/";
 		public static string PathConfig => Path + "config.json";
-		public static string Version => "1.0.0";
+		public static string Version => "1.1.0";
 
 		public char? CommandSymbol { get; set; }
 		public string ClientName { get; set; }
@@ -48,6 +47,7 @@ namespace Botico
 			Commands.Add(new CommandRussianRoulette());
 			Commands.Add(CommandQuestion);
 			Commands.Add(new CommandAnswer());
+			Commands.Add(new CommandImage());
 		}
 
 		/// <summary>
@@ -57,15 +57,15 @@ namespace Botico
 		/// <param name="command">Command.</param>
 		/// <param name="sender">Command sender.</param>
 		/// <param name="inGroupChat">Is command sent in group chat?</param>
-		public string UseCommand(string command, string sender, bool inGroupChat)
+		public BoticoResponse UseCommand(string command, string sender, bool inGroupChat)
 		{
-			if (string.IsNullOrEmpty(command)) return "";
+			if (string.IsNullOrEmpty(command)) return EmptyResponse;
 
 			if (CommandSymbol != null)
 			{
-				if (command[0] != CommandSymbol) return "";
+				if (command[0] != CommandSymbol) return EmptyResponse;
 				command = command.Remove(0, 1);
-				if (string.IsNullOrEmpty(command)) return "";
+				if (string.IsNullOrEmpty(command)) return EmptyResponse;
 				if (command[0] == ' ')
 					command = command.Remove(0, 1);
 			}
@@ -95,7 +95,7 @@ namespace Botico
 					});
 				}
 			}
-			return "";
+			return EmptyResponse;
 		}
 
 		/// <summary>
@@ -142,5 +142,7 @@ namespace Botico
 		{
 			File.WriteAllText(PathConfig, JsonConvert.SerializeObject(Config, Formatting.Indented));
 		}
+
+		public static BoticoResponse EmptyResponse => new BoticoResponse { Image = null, Text = "" };
 	}
 }

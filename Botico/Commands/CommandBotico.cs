@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using Botico.Model;
 
@@ -11,7 +11,7 @@ namespace Botico.Commands
 			return b.Loc.GetString("command.botico.names").Split(',');
 		}
 
-		public string OnUse(CommandArgs args)
+		public BoticoResponse OnUse(CommandArgs args)
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("Botico " + BoticoClient.Version);

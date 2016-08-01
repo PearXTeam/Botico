@@ -1,4 +1,3 @@
-﻿using System;
 using System.IO;
 using Botico.Model;
 using Newtonsoft.Json;
@@ -12,7 +11,7 @@ namespace Botico.Commands
 			return b.Loc.GetString("command.addThing.names").Split(',');
 		}
 
-		public string OnUse(CommandArgs args)
+		public BoticoResponse OnUse(CommandArgs args)
 		{
 			switch (args.Args.Length)
 			{

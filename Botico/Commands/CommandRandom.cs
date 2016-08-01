@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Botico.Model;
 using PearXLib;
 
@@ -11,7 +11,7 @@ namespace Botico.Commands
 			return b.Loc.GetString("command.random.names").Split(',');
 		}
 
-		public string OnUse(CommandArgs args)
+		public BoticoResponse OnUse(CommandArgs args)
 		{
 			long max, min;
 			switch (args.Args.Length)

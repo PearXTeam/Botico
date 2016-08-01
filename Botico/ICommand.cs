@@ -1,11 +1,10 @@
-﻿using System;
-using Botico.Model;
+﻿using Botico.Model;
 
 namespace Botico
 {
 	public interface ICommand
 	{
 		string[] Names(BoticoClient b);
-		string OnUse(CommandArgs args);
+		BoticoResponse OnUse(CommandArgs args);
 	}
 }

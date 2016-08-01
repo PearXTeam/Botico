@@ -44,6 +44,9 @@ command.answer.notAsked=Ты не задал мне вопрос.
 command.answer.incorrectUsage=Ты не написал ответ.
 command.answer.notPermitted=Ты не Мой Господин.
 
+command.image.names=картинку,картинка,картинки,image,images
+command.image.usage=Использование команды: %cmd <название картинки>
+
 answers=Да;Нет;Наверное;Возможно;Скорее да, чем нет;Скорее нет, чем да;А ты как думаешь?;Ну я даже не знаю...";
 		public static string ru_RU_info = "Russian (Русский)";
 	}

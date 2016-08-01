@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Net;
 using System.Text;
 using Botico.Model;
 using Newtonsoft.Json;
 using PearXLib;
+using PearXLib.GoogleApis;
 
 namespace Botico.Commands
 {
@@ -14,7 +15,7 @@ namespace Botico.Commands
 			return b.Loc.GetString("command.wiki.names").Split(',');
 		}
 
-		public string OnUse(CommandArgs args)
+		public BoticoResponse OnUse(CommandArgs args)
 		{
 			string cmdSymbol = args.Botico.CommandSymbol == null ? "" : args.Botico.CommandSymbol.ToString();
 			switch (args.Args.Length)
@@ -29,7 +30,7 @@ namespace Botico.Commands
 						using (var resp = req.GetResponse())
 						{
 							string s = resp.Headers["Location"];
-							string shorten = JsonConvert.DeserializeObject<GoogleShortener>(WebUtils.ShortURL(s, args.Botico.Config.GoogleURLShortenerKey)).id;
+							string shorten = JsonConvert.DeserializeObject<GoogleShortener>(GoogleUtils.ShortURL(s, args.Botico.Config.GoogleURLShortenerKey)).id;
 							string name = Uri.UnescapeDataString(s).Substring(wikiSource.URL.Length) + " - " + wikiSource.FriendlyName;
 							if (args.Botico.UseMarkdown)
 								return shorten + " - " + "```\n" + name + "\n```";
