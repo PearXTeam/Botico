@@ -10,6 +10,11 @@ namespace Botico.Commands
 {
 	public class CommandWiki : ICommand
 	{
+		public string Description(BoticoClient b)
+		{
+			return b.Loc.GetString("command.wiki.desc");
+		}
+
 		public string[] Names(BoticoClient b)
 		{
 			return b.Loc.GetString("command.wiki.names").Split(',');

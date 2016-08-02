@@ -6,5 +6,6 @@ namespace Botico
 	{
 		string[] Names(BoticoClient b);
 		BoticoResponse OnUse(CommandArgs args);
+		string Description(BoticoClient b);
 	}
 }

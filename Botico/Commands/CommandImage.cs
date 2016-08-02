@@ -9,6 +9,11 @@ namespace Botico
 {
 	public class CommandImage : ICommand
 	{
+		public string Description(BoticoClient b)
+		{
+			return b.Loc.GetString("command.image.desc");
+		}
+
 		public string[] Names(BoticoClient b)
 		{
 			return b.Loc.GetString("command.image.names").Split(',');

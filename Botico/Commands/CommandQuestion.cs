@@ -26,5 +26,10 @@ namespace Botico
 			}
 			return BoticoUtils.GenAnswer(args.Botico);
 		}
+
+		public string Description(BoticoClient b)
+		{
+			return b.Loc.GetString("command.question.desc");
+		}
 	}
 }

@@ -6,6 +6,11 @@ namespace Botico.Commands
 {
 	public class CommandRandom : ICommand
 	{
+		public string Description(BoticoClient b)
+		{
+			return b.Loc.GetString("command.random.desc");
+		}
+
 		public string[] Names(BoticoClient b)
 		{
 			return b.Loc.GetString("command.random.names").Split(',');

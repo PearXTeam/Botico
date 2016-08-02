@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Botico.Model;
 using Newtonsoft.Json;
@@ -6,6 +7,11 @@ namespace Botico.Commands
 {
 	public class CommandAddThing : ICommand
 	{
+		public string Description(BoticoClient b)
+		{
+			return b.Loc.GetString("command.addThing.desc");
+		}
+
 		public string[] Names(BoticoClient b)
 		{
 			return b.Loc.GetString("command.addThing.names").Split(',');

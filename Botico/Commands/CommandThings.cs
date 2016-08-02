@@ -1,6 +1,7 @@
 using System.Text;
 using System.Collections.Generic;
 using Botico.Model;
+using System;
 
 namespace Botico.Commands
 {
@@ -8,6 +9,11 @@ namespace Botico.Commands
 	{
 		public List<BoticoElement> Things = new List<BoticoElement>();
 		public static string PathThings => BoticoClient.Path + "things.json";
+
+		public string Description(BoticoClient b)
+		{
+			return b.Loc.GetString("command.things.desc");
+		}
 
 		public string[] Names(BoticoClient b)
 		{
