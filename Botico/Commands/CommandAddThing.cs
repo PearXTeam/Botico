@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using Botico.Model;
 using Newtonsoft.Json;

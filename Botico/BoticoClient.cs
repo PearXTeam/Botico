@@ -25,6 +25,7 @@ namespace Botico
 
 		public CommandThings CommandThings = new CommandThings();
 		public CommandQuestion CommandQuestion = new CommandQuestion();
+		public CommandDictionary CommandDict = new CommandDictionary();
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:Botico.BoticoClient"/> class.
@@ -48,6 +49,7 @@ namespace Botico
 			Commands.Add(CommandQuestion);
 			Commands.Add(new CommandAnswer());
 			Commands.Add(new CommandImage());
+			Commands.Add(CommandDict);
 		}
 
 		/// <summary>
@@ -115,14 +117,23 @@ namespace Botico
 				{
 					Language = "ru_RU",
 					Owners = new string[] { "183388312" },
-					WikiSources = new WikiSource[] { new WikiSource
-						{
+					WikiSources = new WikiSource[]
+					{
+						new WikiSource {
 							Name = "wikipedia",
 							RandomURL = "https://en.wikipedia.org/wiki/Special:Random",
 							URL = "https://en.wikipedia.org/wiki/" ,
 							FriendlyName = "WikiPedia"
 						} },
-					GoogleURLShortenerKey = "put_your_key_here"
+					GoogleApiKey = "put_your_key_here",
+					Dictionaries = new BoticoDictionary[]
+					{
+						new BoticoDictionary {
+							Name = "Russian",
+							Type = "web",
+							Path = "https://github.com/mrAppleXZ/TextDicts/raw/master/russian.txt"
+						}
+					}
 				};
 			}
 
@@ -131,6 +142,8 @@ namespace Botico
 
 			if (File.Exists(CommandQuestion.PathQuestions))
 				CommandQuestion.Questions = JsonConvert.DeserializeObject<Dictionary<string, BoticoElement>>(File.ReadAllText(CommandQuestion.PathQuestions));
+
+			CommandDict.Init(this);
 
 			Loc = new Localization(PathLangs, Config.Language, "ru_RU");
 		}

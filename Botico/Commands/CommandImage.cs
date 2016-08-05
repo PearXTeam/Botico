@@ -1,4 +1,3 @@
-using System;
 using System.Drawing;
 using System.Net;
 using Botico.Model;
@@ -27,7 +26,7 @@ namespace Botico
 				return args.Botico.Loc.GetString("command.image.usage").Replace("%cmd", sym + args.Command);
 			}
 
-			var v = JsonConvert.DeserializeObject<GoogleImageSearch.RootObject>(GoogleUtils.SearchImages(args.JoinedArgs, args.Botico.Config.GoogleURLShortenerKey, "001650684090692243479:q5zk7hv6vqg"));
+			var v = JsonConvert.DeserializeObject<GoogleImageSearch.RootObject>(GoogleUtils.SearchImages(args.JoinedArgs, args.Botico.Config.GoogleApiKey, "001650684090692243479:q5zk7hv6vqg"));
 			string imgUrl = v.items[args.Random.Next(0, 10)].link;
 			using (WebResponse resp = WebRequest.Create(imgUrl).GetResponse())
 			{

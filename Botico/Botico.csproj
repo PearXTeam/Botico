@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -35,9 +34,9 @@
     <Compile Include="Commands\CommandBotico.cs" />
     <Compile Include="Commands\CommandRandom.cs" />
     <Compile Include="Commands\CommandAddThing.cs" />
+    <Compile Include="Commands\CommandRussianRoulette.cs" />
     <Compile Include="Commands\CommandThings.cs" />
     <Compile Include="Commands\CommandWiki.cs" />
-    <Compile Include="Commands\CommandRussianRoulette.cs" />
     <Compile Include="Model\BoticoConfig.cs" />
     <Compile Include="Model\CommandArgs.cs" />
     <Compile Include="Model\WikiSource.cs" />
@@ -47,6 +46,8 @@
     <Compile Include="Commands\CommandAnswer.cs" />
     <Compile Include="Commands\CommandImage.cs" />
     <Compile Include="Model\BoticoResponse.cs" />
+    <Compile Include="Model\BoticoDictionary.cs" />
+    <Compile Include="Commands\CommandDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PearXLib\PearXLib\PearXLib.csproj">

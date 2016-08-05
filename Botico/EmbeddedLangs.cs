@@ -53,9 +53,16 @@ command.answer.notAsked=Ты не задал мне вопрос.
 command.answer.incorrectUsage=Ты не написал ответ.
 command.answer.notPermitted=Ты не Мой Господин.
 
-command.image.names=картинку,картинка,картинки,image,images
+command.image.names=картинку,картинка,картинки,image,images,picture,pictures
 command.image.desc=Поиск указанной картинки.
 command.image.usage=Использование команды: %cmd <название картинки>
+
+command.dictionary.names=словарь,словари,dict,dictionary
+command.dictionary.desc=Плюшки, связанные со словарями.
+command.dictionary.usage=Использование команды: %cmd <рандом|список>
+command.dictionary.list=список
+command.dictionary.random=рандом
+command.dictionary.dicts=Доступны следующие словари: 
 
 answers=Да;Нет;Наверное;Возможно;Скорее да, чем нет;Скорее нет, чем да;А ты как думаешь?;Ну я даже не знаю...";
 		public static string ru_RU_info = "Russian (Русский)";
