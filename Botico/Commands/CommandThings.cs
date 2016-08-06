@@ -1,7 +1,6 @@
 using System.Text;
 using System.Collections.Generic;
 using Botico.Model;
-using System;
 
 namespace Botico.Commands
 {
@@ -24,9 +23,9 @@ namespace Botico.Commands
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append(args.Botico.Loc.GetString("command.things"));
-			foreach (var v in Things)
+			foreach (var t in Things)
 			{
-				sb.Append(v.Content);
+				sb.Append(t.Content);
 				sb.Append(", ");
 			}
 			sb.Remove(sb.Length - 2, 2);

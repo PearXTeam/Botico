@@ -14,10 +14,9 @@ command.botico.client=Клиент:
 command.botico.ramUsed=Использовано памяти: 
 
 command.random.names=рандом,random
-command.random.desc=Получить случайное число в указанном диапазоне.
-command.random.usage=Использование команды: %cmd <макс. значение> или %cmd <мин. значение> <макс. значение>
-command.random.nan.max=Максимальное значение не является числом.
-command.random.nan.min=Минимальное значение не является числом.
+command.random.desc=Получить случайное число в указанном диапазоне. Использование команды: %cmd <макс значение> или %cmd <мин значение> <макс значение>
+command.random.nan.max=Максимальное значение должно являться числом и быть меньше %longMax.
+command.random.nan.min=Минимальное значение должно являться числом и быть больше %longMax.
 command.random.minBiggerMax=Минимальное значение больше максимального.
 
 command.things.names=вещи,stuff,things
@@ -25,18 +24,19 @@ command.things.desc=Список моих вещей.
 command.things=У меня есть следующие вещи: 
 
 command.addThing.names=вещь,thing,addthing,add_thing,добавитьвещь,добавить_вещь
-command.addThing.desc=Добавляет мне указанную вещь.
+command.addThing.desc=Добавляет мне указанную вещь. Использование команды: %cmd <вещь>
 command.addThing=Вещь '%thing' успешно добавлена.
-command.addThing.usage=Использование команды: %cmd <вещь>.
 command.addThing.tooLong=Попробуй добавить что-нибудь поменьше.
 command.addThing.exists=У меня уже есть это.
 
 command.wiki.names=вики,википедия,wiki,wikipedia
-command.wiki.desc=Плюшки, связанные с вики.
-command.wiki.usage=Использование команды: %cmd <рандом|список>
+command.wiki.desc=Плюшки, связанные с вики. %cmd рандом - ссылка на случайную статью, %cmd список - список подключенных вики, %cmd инфо <о чем> - получить информацию о чем-то.
 command.wiki.random=рандом
 command.wiki.list=список
+command.wiki.reference=справка
 command.wiki.wikis=Подключены следующие вики: 
+command.wiki.reference.error=Введите то, о чем найти справку.
+command.wiki.reference.notFound=Того, чего вы ищете нет ни в одной вики.
 
 command.roulette.names=русскаярулетка,рулетка,russianroulette,roulette,русская рулетка,russian roulette
 command.roulette.desc=Русская рулетка.
@@ -54,12 +54,10 @@ command.answer.incorrectUsage=Ты не написал ответ.
 command.answer.notPermitted=Ты не Мой Господин.
 
 command.image.names=картинку,картинка,картинки,image,images,picture,pictures
-command.image.desc=Поиск указанной картинки.
-command.image.usage=Использование команды: %cmd <название картинки>
+command.image.desc=Поиск указанной картинки. Использование команды: %cmd <название картинки>
 
 command.dictionary.names=словарь,словари,dict,dictionary
-command.dictionary.desc=Плюшки, связанные со словарями.
-command.dictionary.usage=Использование команды: %cmd <рандом|список>
+command.dictionary.desc=Плюшки, связанные со словарями. %cmd рандом - получить случайное слово, %cmd список - получить список подключенных словарей.
 command.dictionary.list=список
 command.dictionary.random=рандом
 command.dictionary.dicts=Доступны следующие словари: 

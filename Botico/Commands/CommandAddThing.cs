@@ -8,7 +8,7 @@ namespace Botico.Commands
 	{
 		public string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.addThing.desc");
+			return b.Loc.GetString("command.addThing.desc").Replace("%cmd", b.GetCommandSymbol() + Names(b)[0]);
 		}
 
 		public string[] Names(BoticoClient b)
@@ -21,12 +21,10 @@ namespace Botico.Commands
 			switch (args.Args.Length)
 			{
 				case 0:
-					string cmdSymbol = args.Botico.CommandSymbol == null ? "" : args.Botico.CommandSymbol.ToString();
-					return args.Botico.Loc.GetString("command.addThing.usage").Replace("%cmd", cmdSymbol + args.Command);
+					return Description(args.Botico);
 				default:
 					if (args.JoinedArgs.Length <= 24)
 					{
-						//HACK
 						foreach (var v in args.Botico.CommandThings.Things)
 						{
 							if (v.Content == args.JoinedArgs)

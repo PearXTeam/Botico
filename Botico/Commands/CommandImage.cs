@@ -1,7 +1,7 @@
+using System;
 using System.Drawing;
 using System.Net;
 using Botico.Model;
-using Newtonsoft.Json;
 using PearXLib.GoogleApis;
 
 namespace Botico
@@ -20,20 +20,27 @@ namespace Botico
 
 		public BoticoResponse OnUse(CommandArgs args)
 		{
-			if (args.Args.Length == 0)
+			switch (args.Args.Length)
 			{
-				string sym = args.Botico.CommandSymbol == null ? "" : args.Botico.CommandSymbol.Value.ToString();
-				return args.Botico.Loc.GetString("command.image.usage").Replace("%cmd", sym + args.Command);
-			}
-
-			var v = JsonConvert.DeserializeObject<GoogleImageSearch.RootObject>(GoogleUtils.SearchImages(args.JoinedArgs, args.Botico.Config.GoogleApiKey, "001650684090692243479:q5zk7hv6vqg"));
-			string imgUrl = v.items[args.Random.Next(0, 10)].link;
-			using (WebResponse resp = WebRequest.Create(imgUrl).GetResponse())
-			{
-				using (var stream = resp.GetResponseStream())
-				{
-					return new BoticoResponse { Image = Image.FromStream(stream) };
-				}
+				case 0:
+					return Description(args.Botico);
+				default:
+					try
+					{
+						var v = GoogleUtils.SearchImages(args.JoinedArgs, args.Botico.Config.GoogleApiKey, "001650684090692243479:q5zk7hv6vqg");
+						string imgUrl = v.items[args.Random.Next(0, 10)].link;
+						using (WebResponse resp = WebRequest.Create(imgUrl).GetResponse())
+						{
+							using (var stream = resp.GetResponseStream())
+							{
+								return new BoticoResponse { Image = Image.FromStream(stream) };
+							}
+						}
+					}
+					catch (Exception ex)
+					{
+						return ex.Message;
+					}
 			}
 		}
 	}

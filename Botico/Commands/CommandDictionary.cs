@@ -12,7 +12,7 @@ namespace Botico.Commands
 
 		public string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.dictionary.desc");
+			return b.Loc.GetString("command.dictionary.desc").Replace("%cmd", b.GetCommandSymbol() + Names(b)[0]);
 		}
 
 		public string[] Names(BoticoClient b)
@@ -22,26 +22,30 @@ namespace Botico.Commands
 
 		public BoticoResponse OnUse(CommandArgs args)
 		{
-			if (args.Args.Length > 0 && args.Args[0] == args.Botico.Loc.GetString("command.dictionary.list"))
+			switch (args.Args.Length)
 			{
-				StringBuilder sb = new StringBuilder();
-				sb.Append(args.Botico.Loc.GetString("command.dictionary.dicts"));
-				foreach (var v in args.Botico.Config.Dictionaries)
-				{
-					sb.Append(v.Name);
-					sb.Append(", ");
-				}
-				sb.Remove(sb.Length - 2, 2);
-				sb.Append(".");
-				return sb.ToString();
+				case 0:
+					return Description(args.Botico);
+				default:
+					if (args.Args[0] == args.Botico.Loc.GetString("command.dictionary.list"))
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.Append(args.Botico.Loc.GetString("command.dictionary.dicts"));
+						foreach (var v in args.Botico.Config.Dictionaries)
+						{
+							sb.Append(v.Name);
+							sb.Append(", ");
+						}
+						sb.Remove(sb.Length - 2, 2);
+						sb.Append(".");
+						return sb.ToString();
+					}
+					if (args.Args[0] == args.Botico.Loc.GetString("command.dictionary.random"))
+					{
+						return Words[args.Random.Next(0, Words.Length)];
+					}
+					return Description(args.Botico);
 			}
-			if (args.Args.Length > 0 && args.Args[0] == args.Botico.Loc.GetString("command.dictionary.random"))
-			{
-				return Words[args.Random.Next(0, Words.Length)];
-			}
-
-			string cmdSymbol = args.Botico.CommandSymbol == null ? "" : args.Botico.CommandSymbol.ToString();
-			return args.Botico.Loc.GetString("command.dictionary.usage").Replace("%cmd", cmdSymbol + args.Command);
 		}
 
 		public void Init(BoticoClient b)

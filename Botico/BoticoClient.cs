@@ -116,13 +116,14 @@ namespace Botico
 				Config = new BoticoConfig
 				{
 					Language = "ru_RU",
-					Owners = new string[] { "183388312" },
+					Owners = new string[] { "your_name", "your_friend_name" },
 					WikiSources = new WikiSource[]
 					{
 						new WikiSource {
 							Name = "wikipedia",
 							RandomURL = "https://en.wikipedia.org/wiki/Special:Random",
 							URL = "https://en.wikipedia.org/wiki/" ,
+							ApiPhp = "https://en.wikipedia.org/w/api.php",
 							FriendlyName = "WikiPedia"
 						} },
 					GoogleApiKey = "put_your_key_here",
@@ -154,6 +155,11 @@ namespace Botico
 		public void End()
 		{
 			File.WriteAllText(PathConfig, JsonConvert.SerializeObject(Config, Formatting.Indented));
+		}
+
+		public string GetCommandSymbol()
+		{
+			return CommandSymbol == null ? "" : CommandSymbol.Value.ToString();
 		}
 
 		public static BoticoResponse EmptyResponse => new BoticoResponse { Image = null, Text = "" };
