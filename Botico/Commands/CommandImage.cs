@@ -29,13 +29,17 @@ namespace Botico
 					{
 						var v = GoogleUtils.SearchImages(args.JoinedArgs, args.Botico.Config.GoogleApiKey, "001650684090692243479:q5zk7hv6vqg");
 						string imgUrl = v.items[args.Random.Next(0, 10)].link;
-						using (WebResponse resp = WebRequest.Create(imgUrl).GetResponse())
+						if (!args.Botico.LinksInsteadImages)
 						{
-							using (var stream = resp.GetResponseStream())
+							using (WebResponse resp = WebRequest.Create(imgUrl).GetResponse())
 							{
-								return new BoticoResponse { Image = Image.FromStream(stream) };
+								using (var stream = resp.GetResponseStream())
+								{
+									return new BoticoResponse { Image = Image.FromStream(stream) };
+								}
 							}
 						}
+						return imgUrl;
 					}
 					catch (Exception ex)
 					{

@@ -13,15 +13,19 @@ namespace Botico
 		public static string Path => AppDomain.CurrentDomain.BaseDirectory + "/Botico/";
 		public static string PathLangs => Path + "langs/";
 		public static string PathConfig => Path + "config.json";
-		public static string Version => "1.1.0";
+		public static string Version => "1.4.0";
 
 		public char? CommandSymbol { get; set; }
 		public string ClientName { get; set; }
 		public bool UseMarkdown { get; set; }
+		public bool ShorterMessages { get; set; }
+		public bool LinksInsteadImages { get; set; }
+
 		public Localization Loc;
 		public BoticoConfig Config;
 		public List<ICommand> Commands = new List<ICommand>();
 		public Random Rand = new Random();
+		public Logging Log;
 
 		public CommandThings CommandThings = new CommandThings();
 		public CommandQuestion CommandQuestion = new CommandQuestion();
@@ -33,11 +37,16 @@ namespace Botico
 		/// <param name="cmdSymbol">Your command start symbol. For example '/'.</param>
 		/// <param name="clientName">Botico client name. For example "BotConsole for Windows".</param>
 		/// <param name="useMarkdown">Use markdown?</param>
-		public BoticoClient(char? cmdSymbol, string clientName, bool useMarkdown)
+		/// <param name="outLogToConsole">Out log to console?</param>
+		/// <param name="shorterMessages"></param>Use shorter messages? Recommended for IRC.</param>
+		public BoticoClient(char? cmdSymbol, string clientName, bool useMarkdown, bool outLogToConsole, bool shorterMessages, bool linksInsteadImages)
 		{
 			CommandSymbol = cmdSymbol;
 			ClientName = clientName;
 			UseMarkdown = useMarkdown;
+			ShorterMessages = shorterMessages;
+			LinksInsteadImages = linksInsteadImages;
+			Log = new Logging(Path + "logs/" + PXL.GetDateTimeNow() + ".log", outLogToConsole);
 
 			Commands.Add(new CommandHelp());
 			Commands.Add(new CommandBotico());
@@ -50,6 +59,7 @@ namespace Botico
 			Commands.Add(new CommandAnswer());
 			Commands.Add(new CommandImage());
 			Commands.Add(CommandDict);
+			Commands.Add(new CommandAbout());
 		}
 
 		/// <summary>
@@ -160,6 +170,23 @@ namespace Botico
 		public string GetCommandSymbol()
 		{
 			return CommandSymbol == null ? "" : CommandSymbol.Value.ToString();
+		}
+
+		public ICommand GetCommandFromString(string s)
+		{
+			foreach (ICommand cmd in Commands)
+			{
+				foreach (string cmdName in cmd.Names(this))
+				{
+					if (!s.ToLower().StartsWith(cmdName, StringComparison.Ordinal)) continue;
+					if (s.Length != cmdName.Length)
+					{
+						if (s[cmdName.Length] != ' ') continue;
+					}
+					return cmd;
+				}
+			}
+			return null;
 		}
 
 		public static BoticoResponse EmptyResponse => new BoticoResponse { Image = null, Text = "" };

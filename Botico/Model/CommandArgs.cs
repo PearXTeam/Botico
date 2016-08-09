@@ -50,5 +50,10 @@ namespace Botico.Model
 		/// <see cref="T:System.Random"/> instance.
 		/// </summary>
 		public Random Random { get; set; }
+
+		/// <summary>
+		/// Other object.
+		/// </summary>
+		public object Other { get; set; }
 	}
 }

@@ -19,9 +19,10 @@ namespace Botico.Commands
 		public BoticoResponse OnUse(CommandArgs args)
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.AppendLine("Botico " + BoticoClient.Version);
-			sb.AppendLine(args.Botico.Loc.GetString("command.botico.runningOn") + Environment.OSVersion.Platform);
-			sb.AppendLine(args.Botico.Loc.GetString("command.botico.client") + args.Botico.ClientName);
+			string post = args.Botico.ShorterMessages ? ", " : "\n";
+			sb.Append("Botico " + BoticoClient.Version + post);
+			sb.Append(args.Botico.Loc.GetString("command.botico.runningOn") + Environment.OSVersion.Platform + post);
+			sb.Append(args.Botico.Loc.GetString("command.botico.client") + args.Botico.ClientName + post);
 			sb.Append(args.Botico.Loc.GetString("command.botico.ramUsed") + GC.GetTotalMemory(true) / 1024 + " kB");
 			return sb.ToString();
 		}

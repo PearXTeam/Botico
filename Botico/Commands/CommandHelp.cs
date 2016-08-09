@@ -18,12 +18,25 @@ namespace Botico.Commands
 		public BoticoResponse OnUse(CommandArgs args)
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.AppendLine(args.Botico.Loc.GetString("command.help"));
-			foreach (ICommand cmd in args.Botico.Commands)
+			if (!args.Botico.ShorterMessages)
 			{
-				sb.Append(args.Botico.GetCommandSymbol() + cmd.Names(args.Botico)[0] + " - " + cmd.Description(args.Botico) + "\n");
+				sb.AppendLine(args.Botico.Loc.GetString("command.help"));
+				foreach (ICommand cmd in args.Botico.Commands)
+				{
+					sb.Append(args.Botico.GetCommandSymbol() + cmd.Names(args.Botico)[0] + " - " + cmd.Description(args.Botico) + "\n");
+				}
+				sb.Remove(sb.Length - 1, 1);
 			}
-			sb.Remove(sb.Length - 1, 1);
+			else
+			{
+				sb.Append(args.Botico.Loc.GetString("command.help"));
+				foreach (ICommand cmd in args.Botico.Commands)
+				{
+					sb.Append(args.Botico.GetCommandSymbol() + cmd.Names(args.Botico)[0] + ", ");
+				}
+				sb.Remove(sb.Length - 2, 2);
+				sb.Append(".");
+			}
 			return sb.ToString();
 		}
 	}

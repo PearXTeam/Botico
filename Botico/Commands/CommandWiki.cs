@@ -2,9 +2,9 @@ using System.Text;
 using Botico.Model;
 using PearXLib;
 using PearXLib.GoogleApis;
-using System.Web;
 using PearXLib.Wiki;
 using System.Linq;
+using System;
 
 namespace Botico.Commands
 {
@@ -34,7 +34,7 @@ namespace Botico.Commands
 						string s = WebUtils.GetRedirectUrl(wikiSource.RandomURL);
 
 						string shorten = GoogleUtils.ShortURL(s, args.Botico.Config.GoogleApiKey).id;
-						string name = HttpUtility.HtmlDecode(s).Substring(wikiSource.URL.Length) + " - " + wikiSource.FriendlyName;
+						string name = Uri.UnescapeDataString(s).Substring(wikiSource.URL.Length) + " - " + wikiSource.FriendlyName;
 						if (args.Botico.UseMarkdown)
 							return shorten + " - " + "```" + name + "```";
 						return shorten + " - " + name;

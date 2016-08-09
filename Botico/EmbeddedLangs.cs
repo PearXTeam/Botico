@@ -62,6 +62,10 @@ command.dictionary.list=список
 command.dictionary.random=рандом
 command.dictionary.dicts=Доступны следующие словари: 
 
+command.about.names=окоманде,о_команде,о команде,aboutcommand,aboutcmd,about_command,about_cmd
+command.about.desc=Получить инфу о команде. Использование: %cmd <команда>.
+command.about.notFound=Команда не найдена!
+
 answers=Да;Нет;Наверное;Возможно;Скорее да, чем нет;Скорее нет, чем да;А ты как думаешь?;Ну я даже не знаю...";
 		public static string ru_RU_info = "Russian (Русский)";
 	}
