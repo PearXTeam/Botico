@@ -22,7 +22,7 @@
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\BoticoConsole\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
