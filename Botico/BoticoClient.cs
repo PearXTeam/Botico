@@ -10,10 +10,10 @@ namespace Botico
 {
 	public class BoticoClient
 	{
-		public static string Path => AppDomain.CurrentDomain.BaseDirectory + "/Botico/";
-		public static string PathLangs => Path + "langs/";
-		public static string PathConfig => Path + "config.json";
-		public static string Version => "1.4.0";
+		public static string Path = AppDomain.CurrentDomain.BaseDirectory + "/Botico/";
+		public static string PathLangs = Path + "langs/";
+		public static string PathConfig = Path + "config.json";
+		public const string Version = "1.5.0";
 
 		public char? CommandSymbol { get; set; }
 		public string ClientName { get; set; }
@@ -60,6 +60,7 @@ namespace Botico
 			Commands.Add(new CommandImage());
 			Commands.Add(CommandDict);
 			Commands.Add(new CommandAbout());
+			Commands.Add(new CommandTurn());
 		}
 
 		/// <summary>

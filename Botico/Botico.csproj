@@ -49,6 +49,7 @@
     <Compile Include="Model\BoticoDictionary.cs" />
     <Compile Include="Commands\CommandDictionary.cs" />
     <Compile Include="Commands\CommandAbout.cs" />
+    <Compile Include="Commands\CommandTurn.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PearXLib\PearXLib\PearXLib.csproj">
