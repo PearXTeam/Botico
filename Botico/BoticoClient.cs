@@ -13,7 +13,7 @@ namespace Botico
 		public static string Path = AppDomain.CurrentDomain.BaseDirectory + "/Botico/";
 		public static string PathLangs = Path + "langs/";
 		public static string PathConfig = Path + "config.json";
-		public const string Version = "1.5.0";
+		public const string Version = "1.6.0";
 
 		public char? CommandSymbol { get; set; }
 		public string ClientName { get; set; }
@@ -30,6 +30,7 @@ namespace Botico
 		public CommandThings CommandThings = new CommandThings();
 		public CommandQuestion CommandQuestion = new CommandQuestion();
 		public CommandDictionary CommandDict = new CommandDictionary();
+		public CommandBoobs CommandBoobs = new CommandBoobs();
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:Botico.BoticoClient"/> class.
@@ -61,6 +62,7 @@ namespace Botico
 			Commands.Add(CommandDict);
 			Commands.Add(new CommandAbout());
 			Commands.Add(new CommandTurn());
+			Commands.Add(CommandBoobs);
 		}
 
 		/// <summary>
@@ -147,6 +149,7 @@ namespace Botico
 						}
 					}
 				};
+				File.WriteAllText(PathConfig, JsonConvert.SerializeObject(Config, Formatting.Indented));
 			}
 
 			if (File.Exists(CommandThings.PathThings))
@@ -155,17 +158,12 @@ namespace Botico
 			if (File.Exists(CommandQuestion.PathQuestions))
 				CommandQuestion.Questions = JsonConvert.DeserializeObject<Dictionary<string, BoticoElement>>(File.ReadAllText(CommandQuestion.PathQuestions));
 
+			if (File.Exists(CommandBoobs.Path))
+				CommandBoobs.Index = Convert.ToInt32(File.ReadAllText(CommandBoobs.Path));
+
 			CommandDict.Init(this);
 
 			Loc = new Localization(PathLangs, Config.Language, "ru_RU");
-		}
-
-		/// <summary>
-		/// End Botico.
-		/// </summary>
-		public void End()
-		{
-			File.WriteAllText(PathConfig, JsonConvert.SerializeObject(Config, Formatting.Indented));
 		}
 
 		public string GetCommandSymbol()
@@ -191,5 +189,18 @@ namespace Botico
 		}
 
 		public static BoticoResponse EmptyResponse => new BoticoResponse { Image = null, Text = "" };
+
+		public event BoticoSendMessageHandler Send;
+
+		public void PerformSend(BoticoSendMessageEventArgs e)
+		{
+			if (Send != null)
+				Send(e);
+			else
+				Log.Add("[Botico] Message sending not implemented!", LogType.Warning);
+				
+		}
 	}
+
+	public delegate void BoticoSendMessageHandler(BoticoSendMessageEventArgs e);
 }

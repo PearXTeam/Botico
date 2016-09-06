@@ -69,6 +69,9 @@ command.about.notFound=Команда не найдена!
 command.turn.names=повернуть,вертеть,будемвертеть,будем вертеть,turn
 command.turn.desc=Повернуть слово задом наперед. Использование %cmd <слово>
 
+# ( ͡° ͜ʖ ͡°)
+command.boobs.names=сиськи,boobs,сисечки
+
 answers=Да;Нет;Наверное;Возможно;Скорее да, чем нет;Скорее нет, чем да;А ты как думаешь?;Ну я даже не знаю...";
 		public static string ru_RU_info = "Russian (Русский)";
 	}

@@ -23,7 +23,8 @@ namespace Botico.Commands
 				sb.AppendLine(args.Botico.Loc.GetString("command.help"));
 				foreach (ICommand cmd in args.Botico.Commands)
 				{
-					sb.Append(args.Botico.GetCommandSymbol() + cmd.Names(args.Botico)[0] + " - " + cmd.Description(args.Botico) + "\n");
+					if(!(cmd is IHidden))
+						sb.Append(args.Botico.GetCommandSymbol() + cmd.Names(args.Botico)[0] + " - " + cmd.Description(args.Botico) + "\n");
 				}
 				sb.Remove(sb.Length - 1, 1);
 			}

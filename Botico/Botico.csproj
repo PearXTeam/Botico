@@ -50,6 +50,9 @@
     <Compile Include="Commands\CommandDictionary.cs" />
     <Compile Include="Commands\CommandAbout.cs" />
     <Compile Include="Commands\CommandTurn.cs" />
+    <Compile Include="Model\BoticoSendMessageEventArgs.cs" />
+    <Compile Include="Model\IHidden.cs" />
+    <Compile Include="Commands\CommandBoobs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PearXLib\PearXLib\PearXLib.csproj">
