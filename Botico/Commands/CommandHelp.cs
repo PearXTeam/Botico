@@ -18,26 +18,21 @@ namespace Botico.Commands
 		public BoticoResponse OnUse(CommandArgs args)
 		{
 			StringBuilder sb = new StringBuilder();
-			if (!args.Botico.ShorterMessages)
+			int onPage = 5;
+			int page = 1;
+			if (args.Args.Length >= 1)
+				int.TryParse(args.Args[0], out page);
+			if (page == 0)
+				page = 1;
+
+			for (int i = (page - 1) * onPage; i < page * onPage; i++)
 			{
-				sb.AppendLine(args.Botico.Loc.GetString("command.help"));
-				foreach (ICommand cmd in args.Botico.Commands)
-				{
-					if(!(cmd is IHidden))
-						sb.Append(args.Botico.GetCommandSymbol() + cmd.Names(args.Botico)[0] + " - " + cmd.Description(args.Botico) + "\n");
-				}
-				sb.Remove(sb.Length - 1, 1);
+				if (args.Botico.Commands.Count <= i)
+					break;
+				var cmd = args.Botico.Commands[i];
+				sb.AppendLine(args.Botico.GetCommandName(args.Botico.Commands[i]) + " - " + cmd.Description(args.Botico));
 			}
-			else
-			{
-				sb.Append(args.Botico.Loc.GetString("command.help"));
-				foreach (ICommand cmd in args.Botico.Commands)
-				{
-					sb.Append(args.Botico.GetCommandSymbol() + cmd.Names(args.Botico)[0] + ", ");
-				}
-				sb.Remove(sb.Length - 2, 2);
-				sb.Append(".");
-			}
+			sb.Append(string.Format(args.Botico.Loc.GetString("command.help.page"), page, args.Botico.Commands.Count / onPage, args.Botico.GetCommandName(this)));
 			return sb.ToString();
 		}
 	}

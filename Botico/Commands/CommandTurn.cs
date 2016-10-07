@@ -8,7 +8,7 @@ namespace Botico
 	{
 		public string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.turn.desc").Replace("%cmd", b.CommandSymbol + Names(b)[0]);
+			return b.Loc.GetString("command.turn.desc").Replace("%cmd", b.CmdSymbol + Names(b)[0]);
 		}
 
 		public string[] Names(BoticoClient b)

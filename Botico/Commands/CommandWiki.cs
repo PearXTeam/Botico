@@ -1,10 +1,10 @@
 using System.Text;
 using Botico.Model;
 using PearXLib;
-using PearXLib.GoogleApis;
 using PearXLib.Wiki;
 using System.Linq;
 using System;
+using PearXLib.WebServices.GoogleApis;
 
 namespace Botico.Commands
 {
@@ -12,7 +12,7 @@ namespace Botico.Commands
 	{
 		public string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.wiki.desc").Replace("%cmd", b.GetCommandSymbol() + Names(b)[0]);
+			return b.Loc.GetString("command.wiki.desc").Replace("%cmd", b.CmdSymbol + Names(b)[0]);
 		}
 
 		public string[] Names(BoticoClient b)
@@ -35,7 +35,7 @@ namespace Botico.Commands
 
 						string shorten = GoogleUtils.ShortURL(s, args.Botico.Config.GoogleApiKey).id;
 						string name = Uri.UnescapeDataString(s).Substring(wikiSource.URL.Length) + " - " + wikiSource.FriendlyName;
-						if (args.Botico.UseMarkdown)
+						if (args.Botico.Config.UseMarkdown)
 							return shorten + " - " + "```" + name + "```";
 						return shorten + " - " + name;
 					}

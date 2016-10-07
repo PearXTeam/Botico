@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Net;
 using Botico.Model;
-using PearXLib.GoogleApis;
+using PearXLib;
+using PearXLib.WebServices.GoogleApis;
 
 namespace Botico
 {
@@ -28,18 +29,14 @@ namespace Botico
 					try
 					{
 						var v = GoogleUtils.SearchImages(args.JoinedArgs, args.Botico.Config.GoogleApiKey, "001650684090692243479:q5zk7hv6vqg");
-						string imgUrl = v.items[args.Random.Next(0, 10)].link;
-						if (!args.Botico.LinksInsteadImages)
+						var item = v.items[args.Random.Next(0, 10)];
+						if (!args.Botico.Config.LinksInsteadOfImages)
 						{
-							using (WebResponse resp = WebRequest.Create(imgUrl).GetResponse())
-							{
-								using (var stream = resp.GetResponseStream())
-								{
-									return new BoticoResponse { Image = Image.FromStream(stream) };
-								}
-							}
+							List<Image> lst = new List<Image>();
+							lst.Add(WebUtils.DownloadImage(item.link));
+							return new BoticoResponse { Images = lst, Text = item.title };
 						}
-						return imgUrl;
+						return item.link + " - " + item.title;
 					}
 					catch (Exception ex)
 					{
