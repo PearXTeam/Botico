@@ -3,19 +3,19 @@ using Botico.Model;
 
 namespace Botico.Commands
 {
-	public class CommandRussianRoulette : ICommand
+	public class CommandRussianRoulette : BCommand
 	{
-		public string Description(BoticoClient b)
+		public override string Description(BoticoClient b)
 		{
 			return b.Loc.GetString("command.roulette.desc");
 		}
 
-		public string[] Names(BoticoClient b)
+		public override string[] Names(BoticoClient b)
 		{
 			return b.Loc.GetString("command.roulette.names").Split(',');
 		}
 
-		public BoticoResponse OnUse(CommandArgs args)
+		public override BoticoResponse OnUse(CommandArgs args)
 		{
 			if (args.Random.Next(0, 6) == 0)
 				return args.Botico.Loc.GetString("command.roulette.fail");

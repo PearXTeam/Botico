@@ -4,19 +4,24 @@ using Newtonsoft.Json;
 
 namespace Botico.Commands
 {
-	public class CommandAddThing : ICommand
+	public class CommandAddThing : BCommand
 	{
-		public string Description(BoticoClient b)
+		public CommandAddThing()
 		{
-			return b.Loc.GetString("command.addThing.desc").Replace("%cmd", b.CmdSymbol + Names(b)[0]);
+			DescInHelp = true;
 		}
 
-		public string[] Names(BoticoClient b)
+		public override string Description(BoticoClient b)
+		{
+			return b.Loc.GetString("command.addThing.desc").Replace("%cmd", b.GetCommandName(this));
+		}
+
+		public override string[] Names(BoticoClient b)
 		{
 			return b.Loc.GetString("command.addThing.names").Split(',');
 		}
 
-		public BoticoResponse OnUse(CommandArgs args)
+		public override BoticoResponse OnUse(CommandArgs args)
 		{
 			switch (args.Args.Length)
 			{

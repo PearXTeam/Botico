@@ -7,19 +7,24 @@ using PearXLib.WebServices.GoogleApis;
 
 namespace Botico
 {
-	public class CommandImage : ICommand
+	public class CommandImage : BCommand
 	{
-		public string Description(BoticoClient b)
+		public CommandImage()
 		{
-			return b.Loc.GetString("command.image.desc");
+			DescInHelp = true;
+		}
+		
+		public override string Description(BoticoClient b)
+		{
+			return b.Loc.GetString("command.image.desc").Replace("%cmd", b.GetCommandName(this));
 		}
 
-		public string[] Names(BoticoClient b)
+		public override string[] Names(BoticoClient b)
 		{
 			return b.Loc.GetString("command.image.names").Split(',');
 		}
 
-		public BoticoResponse OnUse(CommandArgs args)
+		public override BoticoResponse OnUse(CommandArgs args)
 		{
 			switch (args.Args.Length)
 			{

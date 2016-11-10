@@ -32,13 +32,12 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PearXLib">
-      <HintPath>..\..\BoticoConsole\packages\PearXLib.1.2.0\lib\net40\PearXLib.dll</HintPath>
+      <HintPath>..\..\pxvkb\packages\PearXLib.1.2.7.1\lib\net40\PearXLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BoticoClient.cs" />
-    <Compile Include="ICommand.cs" />
     <Compile Include="Commands\CommandHelp.cs" />
     <Compile Include="Commands\CommandBotico.cs" />
     <Compile Include="Commands\CommandRandom.cs" />
@@ -60,8 +59,8 @@
     <Compile Include="Commands\CommandAbout.cs" />
     <Compile Include="Commands\CommandTurn.cs" />
     <Compile Include="Model\BoticoSendMessageEventArgs.cs" />
-    <Compile Include="Model\IHidden.cs" />
     <Compile Include="Commands\CommandWolfram.cs" />
+    <Compile Include="Model\BCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />

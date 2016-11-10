@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -7,19 +6,24 @@ using PearXLib.WebServices.Wolfram;
 
 namespace Botico.Commands
 {
-	public class CommandWolfram : ICommand
+	public class CommandWolfram : BCommand
 	{
-		public string Description(BoticoClient b)
+		public CommandWolfram()
 		{
-			return b.Loc.GetString("command.wolfram.desc").Replace("%cmd", b.CmdSymbol + Names(b)[0]);
+			DescInHelp = true;
 		}
 
-		public string[] Names(BoticoClient b)
+		public override string Description(BoticoClient b)
+		{
+			return b.Loc.GetString("command.wolfram.desc").Replace("%cmd", b.GetCommandName(this));
+		}
+
+		public override string[] Names(BoticoClient b)
 		{
 			return b.Loc.GetString("command.wolfram.names").Split(',');
 		}
 
-		public BoticoResponse OnUse(CommandArgs args)
+		public override BoticoResponse OnUse(CommandArgs args)
 		{
 			switch (args.Args.Length)
 			{
@@ -33,7 +37,7 @@ namespace Botico.Commands
 						List<Image> lst = new List<Image>();
 
 						int num = 0;
-						foreach(WolframPod pod in v)
+						foreach (WolframPod pod in v)
 						{
 							for (int i = 0; i < pod.Images.Length; i++)
 							{

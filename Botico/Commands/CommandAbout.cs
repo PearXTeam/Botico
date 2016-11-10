@@ -1,21 +1,26 @@
-﻿using System;
+using System;
 using Botico.Model;
 
 namespace Botico
 {
-	public class CommandAbout : ICommand
+	public class CommandAbout : BCommand
 	{
-		public string Description(BoticoClient b)
+		public CommandAbout()
 		{
-			return b.Loc.GetString("command.about.desc").Replace("%cmd", b.CmdSymbol + Names(b)[0]);
+			DescInHelp = true;
 		}
 
-		public string[] Names(BoticoClient b)
+		public override string Description(BoticoClient b)
+		{
+			return b.Loc.GetString("command.about.desc").Replace("%cmd", b.GetCommandName(this));
+		}
+
+		public override string[] Names(BoticoClient b)
 		{
 			return b.Loc.GetString("command.about.names").Split(',');
 		}
 
-		public BoticoResponse OnUse(CommandArgs args)
+		public override BoticoResponse OnUse(CommandArgs args)
 		{
 			var v = args.Botico.GetCommandFromString(args.JoinedArgs);
 			if (v == null)

@@ -10,23 +10,28 @@ command.botico.client=Клиент:
 command.botico.ramUsed=Использовано памяти: 
 
 command.random.names=рандом,random
-command.random.desc=Получить случайное число в указанном диапазоне. Использование команды: %cmd <макс значение> или %cmd <мин значение> <макс значение>
+command.random.desc=%cmd <макс значение> - получить число от 0 до макс.\n%cmd <мин значение> <макс значение> - получить число от мин. до макс.
 command.random.nan.max=Максимальное значение должно являться числом и быть меньше %longMax.
 command.random.nan.min=Минимальное значение должно являться числом и быть больше %longMax.
 command.random.minBiggerMax=Минимальное значение больше максимального.
 
 command.things.names=вещи,stuff,things
-command.things.desc=Список моих вещей.
+command.things.random=рандом
+command.things.remove=достать
+command.things.remove.noThing=Вы не указали вещь!
+command.things.remove.notFound=У меня этого нет.
+command.things.remove.ok=Вещь достана!
+command.things.desc=Список моих вещей.\n%cmd достать <вещь> - заставляет меня убрать вещь.\n%cmd рандом - показать случайную вещь.
 command.things=У меня есть следующие вещи: 
 
 command.addThing.names=вещь,thing,addthing,add_thing,добавитьвещь,добавить_вещь
-command.addThing.desc=Добавляет мне указанную вещь. Использование команды: %cmd <вещь>
+command.addThing.desc=%cmd <вещь> - добавить мне вещь.
 command.addThing=Вещь '%thing' успешно добавлена.
 command.addThing.tooLong=Попробуй добавить что-нибудь поменьше.
 command.addThing.exists=У меня уже есть это.
 
 command.wiki.names=вики,википедия,wiki,wikipedia
-command.wiki.desc=Плюшки, связанные с вики. %cmd рандом - ссылка на случайную статью, %cmd список - список подключенных вики, %cmd справка <о чем> - получить информацию о чем-то.
+command.wiki.desc=%cmd рандом - ссылка на случайную статью\n%cmd список - список подключенных вики\n%cmd справка <о чем> - получить информацию о чем-то.
 command.wiki.random=рандом
 command.wiki.list=список
 command.wiki.reference=справка
@@ -49,23 +54,23 @@ command.answer.notAsked=Ты не задал мне вопрос.
 command.answer.incorrectUsage=Ты не написал ответ.
 command.answer.notPermitted=Ты не Мой Господин.
 
-command.image.names=картинку,картинка,картинки,image,images,picture,pictures
-command.image.desc=Поиск указанной картинки. Использование команды: %cmd <название картинки>
+command.image.names=картинку,картинка,картинки,image,images,picture,pictures,пикча,пикчу
+command.image.desc=%cmd <название картинки> - поиск картинок.
 
 command.dictionary.names=словарь,словари,dict,dictionary
-command.dictionary.desc=Плюшки, связанные со словарями. %cmd рандом - получить случайное слово, %cmd список - получить список подключенных словарей.
+command.dictionary.desc=%cmd рандом - получить случайное слово.\n%cmd список - список подключенных словарей.
 command.dictionary.list=список
 command.dictionary.random=рандом
 command.dictionary.dicts=Доступны следующие словари: 
 
 command.about.names=окоманде,о_команде,о команде,aboutcommand,aboutcmd,about_command,about_cmd
-command.about.desc=Получить инфу о команде. Использование: %cmd <команда>.
+command.about.desc=%cmd <команда> - получить описание команды.
 command.about.notFound=Команда не найдена!
 
 command.turn.names=повернуть,вертеть,будемвертеть,будем вертеть,turn
-command.turn.desc=Повернуть слово задом наперед. Использование: %cmd <слово>
+command.turn.desc=%cmd <слово> - повернуть слово задом наперед.
 
 command.wolfram.names=решение,вольфрам,wolfram,решение,пример,матан,math
-command.wolfram.desc=Решает пример за Вас. Использование: %cmd <пример>
+command.wolfram.desc=%cmd <условие> - решает что-либо математическое
 
 answers=Да;Нет;Наверное;Возможно;Скорее да, чем нет;Скорее нет, чем да;А ты как думаешь?;Ну я даже не знаю...

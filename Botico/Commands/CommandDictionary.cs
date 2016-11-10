@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Net;
 using System.Text;
 using Botico.Model;
@@ -6,21 +6,26 @@ using PearXLib;
 
 namespace Botico.Commands
 {
-	public class CommandDictionary : ICommand
+	public class CommandDictionary : BCommand
 	{
 		public string[] Words;
 
-		public string Description(BoticoClient b)
+		public CommandDictionary()
 		{
-			return b.Loc.GetString("command.dictionary.desc").Replace("%cmd", b.CmdSymbol + Names(b)[0]);
+			DescInHelp = true;
 		}
 
-		public string[] Names(BoticoClient b)
+		public override string Description(BoticoClient b)
+		{
+			return b.Loc.GetString("command.dictionary.desc").Replace("%cmd", b.GetCommandName(this));
+		}
+
+		public override string[] Names(BoticoClient b)
 		{
 			return b.Loc.GetString("command.dictionary.names").Split(',');
 		}
 
-		public BoticoResponse OnUse(CommandArgs args)
+		public override BoticoResponse OnUse(CommandArgs args)
 		{
 			switch (args.Args.Length)
 			{

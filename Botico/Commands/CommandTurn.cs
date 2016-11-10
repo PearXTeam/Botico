@@ -1,22 +1,26 @@
-﻿using System;
 using Botico.Model;
 using PearXLib;
 
 namespace Botico
 {
-	public class CommandTurn : ICommand
+	public class CommandTurn : BCommand
 	{
-		public string Description(BoticoClient b)
+		public CommandTurn()
 		{
-			return b.Loc.GetString("command.turn.desc").Replace("%cmd", b.CmdSymbol + Names(b)[0]);
+			DescInHelp = true;
 		}
 
-		public string[] Names(BoticoClient b)
+		public override string Description(BoticoClient b)
+		{
+			return b.Loc.GetString("command.turn.desc").Replace("%cmd", b.GetCommandName(this));
+		}
+
+		public override string[] Names(BoticoClient b)
 		{
 			return b.Loc.GetString("command.turn.names").Split(',');
 		}
 
-		public BoticoResponse OnUse(CommandArgs args)
+		public override BoticoResponse OnUse(CommandArgs args)
 		{
 			switch (args.Args.Length)
 			{

@@ -3,19 +3,24 @@ using PearXLib;
 
 namespace Botico.Commands
 {
-	public class CommandRandom : ICommand
+	public class CommandRandom : BCommand
 	{
-		public string Description(BoticoClient b)
+		public CommandRandom()
 		{
-			return b.Loc.GetString("command.random.desc").Replace("%cmd", b.CmdSymbol + Names(b)[0]);
+			DescInHelp = true;
 		}
 
-		public string[] Names(BoticoClient b)
+		public override string Description(BoticoClient b)
+		{
+			return b.Loc.GetString("command.random.desc").Replace("%cmd", b.GetCommandName(this));
+		}
+
+		public override string[] Names(BoticoClient b)
 		{
 			return b.Loc.GetString("command.random.names").Split(',');
 		}
 
-		public BoticoResponse OnUse(CommandArgs args)
+		public override BoticoResponse OnUse(CommandArgs args)
 		{
 			long max, min;
 			switch (args.Args.Length)

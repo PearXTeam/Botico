@@ -8,19 +8,24 @@ using PearXLib.WebServices.GoogleApis;
 
 namespace Botico.Commands
 {
-	public class CommandWiki : ICommand
+	public class CommandWiki : BCommand
 	{
-		public string Description(BoticoClient b)
+		public CommandWiki()
 		{
-			return b.Loc.GetString("command.wiki.desc").Replace("%cmd", b.CmdSymbol + Names(b)[0]);
+			DescInHelp = true;
 		}
 
-		public string[] Names(BoticoClient b)
+		public override string Description(BoticoClient b)
+		{
+			return b.Loc.GetString("command.wiki.desc").Replace("%cmd", b.GetCommandName(this));
+		}
+
+		public override string[] Names(BoticoClient b)
 		{
 			return b.Loc.GetString("command.wiki.names").Split(',');
 		}
 
-		public BoticoResponse OnUse(CommandArgs args)
+		public override BoticoResponse OnUse(CommandArgs args)
 		{
 			string reference = args.Botico.Loc.GetString("command.wiki.reference");
 			switch (args.Args.Length)

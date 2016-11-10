@@ -22,7 +22,7 @@ namespace Botico
 
 		public Localization Loc;
 		public BoticoConfig Config;
-		public List<ICommand> Commands = new List<ICommand>();
+		public List<BCommand> Commands = new List<BCommand>();
 		public Random Rand = new Random();
 		public Logging Log;
 
@@ -74,7 +74,7 @@ namespace Botico
 				if (command[0] == ' ')
 					command = command.Remove(0, 1);
 			}
-			foreach (ICommand cmd in Commands)
+			foreach (BCommand cmd in Commands)
 			{
 				foreach (string cmdName in cmd.Names(this))
 				{
@@ -147,7 +147,8 @@ namespace Botico
 					CommandSymbol = '!',
 					MessageTextLimit = 4096,
 					UseMarkdown = false,
-					LinksInsteadOfImages = false
+					LinksInsteadOfImages = false,
+					NewLines = true
 				};
 				File.WriteAllText(PathConfig, JsonConvert.SerializeObject(Config, Formatting.Indented));
 			}
@@ -170,9 +171,9 @@ namespace Botico
 		/// </summary>
 		/// <returns>A command.</returns>
 		/// <param name="s">Input string.</param>
-		public ICommand GetCommandFromString(string s)
+		public BCommand GetCommandFromString(string s)
 		{
-			foreach (ICommand cmd in Commands)
+			foreach (BCommand cmd in Commands)
 			{
 				foreach (string cmdName in cmd.Names(this))
 				{
@@ -187,7 +188,7 @@ namespace Botico
 			return null;
 		}
 
-		public string GetCommandName(ICommand cmd)
+		public string GetCommandName(BCommand cmd)
 		{
 			return CmdSymbol + cmd.Names(this)[0];
 		}

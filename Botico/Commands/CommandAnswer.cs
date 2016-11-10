@@ -5,19 +5,19 @@ using Newtonsoft.Json;
 
 namespace Botico
 {
-	public class CommandAnswer : ICommand
+	public class CommandAnswer : BCommand
 	{
-		public string Description(BoticoClient b)
+		public override string Description(BoticoClient b)
 		{
 			return b.Loc.GetString("command.answer.desc");
 		}
 
-		public string[] Names(BoticoClient b)
+		public override string[] Names(BoticoClient b)
 		{
 			return b.Loc.GetString("command.answer.names").Split(',');
 		}
 
-		public BoticoResponse OnUse(CommandArgs args)
+		public override BoticoResponse OnUse(CommandArgs args)
 		{
 			if (args.Args.Length == 0)
 				return args.Botico.Loc.GetString("command.answer.incorrectUsage");

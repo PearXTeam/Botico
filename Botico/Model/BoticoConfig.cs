@@ -15,5 +15,6 @@
 		public bool UseMarkdown { get; set; }
 		public long MessageTextLimit { get; set; }
 		public bool LinksInsteadOfImages { get; set; }
+		public bool NewLines { get; set; }
 	}
 }
