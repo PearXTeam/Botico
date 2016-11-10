@@ -114,6 +114,8 @@ namespace Botico
 			Directory.CreateDirectory(PathLangs);
 			File.WriteAllBytes(PathLangs + "ru_RU.lang", ResourceUtils.GetFromResources("Botico.EmbeddedLangs.ru_RU.lang"));
 			File.WriteAllBytes(PathLangs + "ru_RU.langinfo", ResourceUtils.GetFromResources("Botico.EmbeddedLangs.ru_RU.langinfo"));
+			File.WriteAllBytes(PathLangs + "en_US.lang", ResourceUtils.GetFromResources("Botico.EmbeddedLangs.en_US.lang"));
+			File.WriteAllBytes(PathLangs + "en_US.langinfo", ResourceUtils.GetFromResources("Botico.EmbeddedLangs.en_US.langinfo"));
 
 			Log.Add("Loading config files...", "Botico", LogType.Info);
 			if (File.Exists(PathConfig))

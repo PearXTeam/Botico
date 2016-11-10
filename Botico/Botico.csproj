@@ -73,6 +73,8 @@
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedLangs\ru_RU.lang" />
     <EmbeddedResource Include="EmbeddedLangs\ru_RU.langinfo" />
+    <EmbeddedResource Include="EmbeddedLangs\en_US.lang" />
+    <EmbeddedResource Include="EmbeddedLangs\en_US.langinfo" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

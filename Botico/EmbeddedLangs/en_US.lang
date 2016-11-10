@@ -1,0 +1,76 @@
+﻿command.help.names=help,commands
+command.help.desc=Command list.
+command.help=Commands available: 
+command.help.page=You're on page {0} of {1}. Use {2} <page>.
+
+command.botico.names=botico,info
+command.botico.desc=Info about me.
+command.botico.runningOn=Running on: 
+command.botico.client=Client: 
+command.botico.ramUsed=RAM Used: 
+
+command.random.names=random
+command.random.desc=%cmd <max> - get number from 0 to max value.\n%cmd <min> <max> - get number from min value to max value.
+command.random.nan.max=Max value must be a number and lower than %longMax.
+command.random.nan.min=Min value must be a number and lower than %longMax.
+command.random.minBiggerMax=Min value bigger than max value.
+
+command.things.names=things,stuff
+command.things.random=random
+command.things.remove=eject
+command.things.remove.noThing=Please, specify a thing.
+command.things.remove.notFound=I haven't this.
+command.things.remove.ok=A thing successfully ejected!
+command.things.desc=List of my things.\n%cmd eject <things> - remove a thing.\n%cmd random - get a random thing.
+command.things=I have these things: 
+
+command.addThing.names=thing,addthing,add_thing,add thing
+command.addThing.desc=%cmd <thing> - add a thing.
+command.addThing=Thing '%thing' successfully added.
+command.addThing.tooLong=Try to add something smaller.
+command.addThing.exists=I'm already have this thing.
+
+command.wiki.names=wiki,wikipedia
+command.wiki.desc=%cmd random - get a link to a random article.\n%cmd list - get a list of enabled wikis.\n%cmd about <something> - get an inffo about something.
+command.wiki.random=random
+command.wiki.list=list
+command.wiki.reference=about
+command.wiki.wikis=Enabled these wikis: 
+command.wiki.reference.error=You're not specified a someting's name.
+command.wiki.reference.notFound=Not found in wikis :(.
+
+command.roulette.names=russianroulette,roulette,russian roulette
+command.roulette.desc=Russian roulette.
+command.roulette.fail=Shot! You fall down dead.
+command.roulette.win=Shot! You're alive.
+
+command.question.names=question,ask
+command.question.desc=Ask me for question.
+
+command.answer.names=answer
+command.answer.desc=Specify an ansfer for last question.
+command.answer=OK.
+command.answer.notAsked=You're not asked me.
+command.answer.incorrectUsage=You're not specified an answer.
+command.answer.notPermitted=You're not My Master.
+
+command.image.names=image,images,picture,pictures
+command.image.desc=%cmd <picture name> - search for images.
+
+command.dictionary.names=dictionary,dict
+command.dictionary.desc=%cmd random - get a random word.\n%cmd list - get a list of enabled dictionaries.
+command.dictionary.list=list
+command.dictionary.random=random
+command.dictionary.dicts=Enabled these dictionaries: 
+
+command.about.names=aboutcommand,aboutcmd,about_command,about_cmd,about
+command.about.desc=%cmd <command> - get a command's description.
+command.about.notFound=Command not found!
+
+command.turn.names=turn
+command.turn.desc=%cmd <word> - turn a word.
+
+command.wolfram.names=math,wolfram
+command.wolfram.desc=%cmd <example> - decides any mathematical things.
+
+answers=Yes;No;Maybe;Probably;Rather yes than no;Rather no than yes;What do you think?;I don't know
