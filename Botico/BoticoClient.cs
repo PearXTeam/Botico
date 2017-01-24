@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Botico.Commands;
 using Botico.Model;
+using Botico.Model.CustomCommands;
 using Newtonsoft.Json;
 using PearXLib;
 
@@ -16,6 +17,7 @@ namespace Botico
 		public static string Path = AppDomain.CurrentDomain.BaseDirectory + "/Botico/";
 		public static string PathLangs = Path + "langs/";
 		public static string PathConfig = Path + "config.json";
+		public static string PathCustomCommandsConfig = Path + "customcommands.json";
 
 		public string ClientName { get; set; }
 		public string CmdSymbol => Config.CommandSymbol == null ? "" : Config.CommandSymbol.Value.ToString();
@@ -97,8 +99,11 @@ namespace Botico
 						Botico = this,
 						Random = Rand
 					});
-					if (resp.Text.Length > Config.MessageTextLimit)
-						resp.Text = resp.Text.Substring(0, resp.Text.Length - 3) + "...";
+					if (!string.IsNullOrEmpty(resp.Text))
+					{
+						if (resp.Text.Length > Config.MessageTextLimit)
+							resp.Text = resp.Text.Substring(0, resp.Text.Length - 3) + "...";
+					}
 					return resp;
 				}
 			}
@@ -163,6 +168,43 @@ namespace Botico
 			
 			Log.Add("Loading dictionaries...", "Botico", LogType.Info);
 			CommandDict.Init(this);
+
+			Log.Add("Initializing custom commands...", "Botico", LogType.Info);
+			if (File.Exists(PathCustomCommandsConfig))
+			{
+				CustomCommandsConfig cfgs = JsonConvert.DeserializeObject<CustomCommandsConfig>(File.ReadAllText(PathCustomCommandsConfig));
+				foreach (var cfg in cfgs.CustomCommands)
+				{
+					Log.Add($"Adding custom command \"{cfg.Names[0]}\"...", "Botico", LogType.Info);
+					Commands.Add(new CustomCommand(cfg.Names, cfg.Description, cfg.Text, cfg.ImagesPath, cfg.Hidden));
+				}
+			}
+			else
+			{
+				Log.Add($"Custom commands config does not exists! Creating it.", "Botico", LogType.Info);
+				File.WriteAllText(PathCustomCommandsConfig, JsonConvert.SerializeObject(new CustomCommandsConfig
+				{
+					CustomCommands = new CustomCommandCfg[]
+					{
+						new CustomCommandCfg
+						{
+							Names = new string[]{"customcommand", "cc"},
+							Text = "Hello! I'm your custom command ;).",
+							Description = "Sends an example custom command's text.",
+							ImagesPath = null,
+							Hidden = false
+						},
+						new CustomCommandCfg
+						{
+							Names = new string[]{"hiddencc"},
+							Text = "",
+							Description = "I'm a hidden custom command. Tsss...!",
+							ImagesPath = new string[]{"image1.png", "image2.png"},
+							Hidden = true
+						}
+					}
+				}, Formatting.Indented));
+			}
 
 			Log.Add("Done loading Botico!", "Botico", LogType.Info);
 			Loc = new Localization(PathLangs, Config.Language, "ru_RU");

@@ -39,7 +39,7 @@ namespace Botico
 						{
 							List<Image> lst = new List<Image>();
 							lst.Add(WebUtils.DownloadImage(item.link));
-							return new BoticoResponse { Images = lst, Text = item.title };
+							return new BoticoResponse { Images = lst };
 						}
 						return item.link + " - " + item.title;
 					}

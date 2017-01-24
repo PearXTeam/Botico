@@ -29,10 +29,10 @@
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\pxvkb\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PearXLib">
-      <HintPath>..\..\pxvkb\packages\PearXLib.1.2.7.1\lib\net40\PearXLib.dll</HintPath>
+      <HintPath>..\..\pxvkb\packages\PearXLib.1.2.17\lib\net40\PearXLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -61,11 +61,16 @@
     <Compile Include="Model\BoticoSendMessageEventArgs.cs" />
     <Compile Include="Commands\CommandWolfram.cs" />
     <Compile Include="Model\BCommand.cs" />
+    <Compile Include="Model\BoticoFile.cs" />
+    <Compile Include="Commands\CustomCommand.cs" />
+    <Compile Include="Model\CustomCommands\CustomCommandCfg.cs" />
+    <Compile Include="Model\CustomCommands\CustomCommandsConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
     <Folder Include="Model\" />
     <Folder Include="EmbeddedLangs\" />
+    <Folder Include="Model\CustomCommands\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
