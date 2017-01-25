@@ -35,7 +35,7 @@ namespace Botico.Commands
 							if (v.Content == args.JoinedArgs)
 								return args.Botico.Loc.GetString("command.addThing.exists");
 						}
-						args.Botico.CommandThings.Things.Add(new BoticoElement { Content = args.JoinedArgs, From = args.Sender });
+						args.Botico.CommandThings.Things.Add(new BoticoElement { Content = args.JoinedArgs, From = args.Sender.ID });
 						File.WriteAllText(CommandThings.PathThings, JsonConvert.SerializeObject(args.Botico.CommandThings.Things, Formatting.Indented));
 						return args.Botico.Loc.GetString("command.addThing").Replace("%thing", args.JoinedArgs);
 					}

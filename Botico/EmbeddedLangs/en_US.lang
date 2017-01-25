@@ -73,4 +73,8 @@ command.turn.desc=%cmd <word> - turn a word.
 command.wolfram.names=math,wolfram
 command.wolfram.desc=%cmd <example> - decides any mathematical things.
 
+command.who.names=who,whois
+command.who.desc=%cmd <what> - discover who is <what>.
+command.who.notgroupchat=You're is not in a group chat.
+
 answers=Yes;No;Maybe;Probably;Rather yes than no;Rather no than yes;What do you think?;I don't know

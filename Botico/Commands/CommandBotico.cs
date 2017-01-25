@@ -23,13 +23,13 @@ namespace Botico.Commands
 			{
 				sb.AppendLine("PearX Team's Botico");
 				sb.AppendLine(args.Botico.Loc.GetString("command.botico.runningOn") + Environment.OSVersion);
-				sb.AppendLine(args.Botico.Loc.GetString("command.botico.client") + args.Botico.ClientName);
+				sb.AppendLine(args.Botico.Loc.GetString("command.botico.client") + args.Botico.Provider.Name);
 				sb.Append(args.Botico.Loc.GetString("command.botico.ramUsed") + GC.GetTotalMemory(true) / 1024 + " kB");
 			}
 			else
 			{
 				sb.Append("PearX Team's Botico (");
-				sb.Append(args.Botico.ClientName);
+				sb.Append(args.Botico.Provider.Name);
 				sb.Append("), запущен на ");
 				sb.Append(Environment.OSVersion);
 				sb.Append(", использовано ");

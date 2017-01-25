@@ -19,7 +19,7 @@ namespace Botico
 		public static string PathConfig = Path + "config.json";
 		public static string PathCustomCommandsConfig = Path + "customcommands.json";
 
-		public string ClientName { get; set; }
+		public BoticoClientProvider Provider { get; set; }
 		public string CmdSymbol => Config.CommandSymbol == null ? "" : Config.CommandSymbol.Value.ToString();
 
 		public Localization Loc;
@@ -35,10 +35,10 @@ namespace Botico
 	    /// <summary>
 	    /// Initializes a new instance of the <see cref="T:Botico.BoticoClient"/> class.
 	    /// </summary>
-	    /// <param name="clientName">Current Botico client name. For example, "Botico for IRC".</param>
-		public BoticoClient(string clientName)
+		/// <param name="prov">Botico client provider.</param>
+		public BoticoClient(BoticoClientProvider prov)
 		{
-			ClientName = clientName;
+			Provider = prov;
 			Log = new Logging(Path + "logs/" + PXL.GetDateTimeNow() + ".log", true);
 
 			Commands.Add(new CommandHelp());
@@ -55,6 +55,7 @@ namespace Botico
 			Commands.Add(new CommandAbout());
 			Commands.Add(new CommandTurn());
 			Commands.Add(new CommandWolfram());
+			Commands.Add(new CommandWho());
 		}
 
 		/// <summary>
@@ -64,7 +65,8 @@ namespace Botico
 		/// <param name="command">Command.</param>
 		/// <param name="sender">Command sender.</param>
 		/// <param name="inGroupChat">Is command sent in group chat?</param>
-		public BoticoResponse UseCommand(string command, string sender, bool inGroupChat)
+		/// <param name="groupChatMembers">Group chat members. Can be null.</param>
+		public BoticoResponse UseCommand(string command, CommandSender sender, bool inGroupChat, CommandSender[] groupChatMembers)
 		{
 			if (string.IsNullOrEmpty(command)) return EmptyResponse;
 
@@ -97,7 +99,8 @@ namespace Botico
 						Args = useArgs ? args.Split(' ') : new string[] { },
 						IsOwner = BoticoUtils.IsOwner(sender, Config), 
 						Botico = this,
-						Random = Rand
+						Random = Rand,
+						GroupChatMembers = groupChatMembers
 					});
 					if (!string.IsNullOrEmpty(resp.Text))
 					{

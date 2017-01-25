@@ -65,6 +65,9 @@
     <Compile Include="Commands\CustomCommand.cs" />
     <Compile Include="Model\CustomCommands\CustomCommandCfg.cs" />
     <Compile Include="Model\CustomCommands\CustomCommandsConfig.cs" />
+    <Compile Include="Model\CommandSender.cs" />
+    <Compile Include="Commands\CommandWho.cs" />
+    <Compile Include="BoticoClientProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />

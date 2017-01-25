@@ -16,9 +16,14 @@ namespace Botico
 			return full.ToLower().Replace(" ", "").Replace("?", "").Replace("!", "").Replace(",", "").Replace(".", "");
 		}
 
-		public static bool IsOwner(string sender, BoticoConfig config)
+		public static bool IsOwner(CommandSender sender, BoticoConfig config)
 		{
-			return config.Owners.ToList().Contains(sender);
+			return IsOwner(sender.ID, config);
+		}
+
+		public static bool IsOwner(string id, BoticoConfig cfg)
+		{
+			return cfg.Owners.ToList().Contains(id);
 		}
 	}
 }

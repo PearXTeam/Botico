@@ -17,7 +17,7 @@ namespace Botico.Model
 		/// <summary>
 		/// Command sender.
 		/// </summary>
-		public string Sender { get; set; }
+		public CommandSender Sender { get; set; }
 
 		/// <summary>
 		/// Joined arguments. For example: if full command is "/question How are you?", JoinedArgs must be "How are you?".
@@ -52,8 +52,8 @@ namespace Botico.Model
 		public Random Random { get; set; }
 
 		/// <summary>
-		/// Other object.
+		/// Gets th group chat members. Returns null if message is not in group chat.
 		/// </summary>
-		public object Other { get; set; }
+		public CommandSender[] GroupChatMembers { get; set; }
 	}
 }

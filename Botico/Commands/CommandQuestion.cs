@@ -18,7 +18,7 @@ namespace Botico
 		public override BoticoResponse OnUse(CommandArgs args)
 		{
 			string q = BoticoUtils.GetShortQuestion(args.JoinedArgs);
-			QuestionCache[args.Sender] = q;
+			QuestionCache[args.Sender.ID] = q;
 			if (Questions.ContainsKey(q))
 			{
 				return Questions[q].Content;
