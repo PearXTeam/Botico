@@ -13,12 +13,12 @@ namespace Botico.Commands
 
 		public override string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.addThing.desc").Replace("%cmd", b.GetCommandName(this));
+			return b.Loc["command.addThing.desc"].Replace("%cmd", b.GetCommandName(this));
 		}
 
 		public override string[] Names(BoticoClient b)
 		{
-			return b.Loc.GetString("command.addThing.names").Split(',');
+			return b.Loc["command.addThing.names"].Split(',');
 		}
 
 		public override BoticoResponse OnUse(CommandArgs args)
@@ -33,13 +33,13 @@ namespace Botico.Commands
 						foreach (var v in args.Botico.CommandThings.Things)
 						{
 							if (v.Content == args.JoinedArgs)
-								return args.Botico.Loc.GetString("command.addThing.exists");
+								return args.Botico.Loc["command.addThing.exists"];
 						}
-						args.Botico.CommandThings.Things.Add(new BoticoElement { Content = args.JoinedArgs, From = args.Sender.ID });
+						args.Botico.CommandThings.Things.Add(new BoticoElement(args.JoinedArgs, args.Sender.ID));
 						File.WriteAllText(CommandThings.PathThings, JsonConvert.SerializeObject(args.Botico.CommandThings.Things, Formatting.Indented));
-						return args.Botico.Loc.GetString("command.addThing").Replace("%thing", args.JoinedArgs);
+						return args.Botico.Loc["command.addThing"].Replace("%thing", args.JoinedArgs);
 					}
-					return args.Botico.Loc.GetString("command.addThing.tooLong");
+					return args.Botico.Loc["command.addThing.tooLong"];
 			}
 		}
 	}

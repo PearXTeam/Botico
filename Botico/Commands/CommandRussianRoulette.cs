@@ -7,19 +7,19 @@ namespace Botico.Commands
 	{
 		public override string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.roulette.desc");
+			return b.Loc["command.roulette.desc"];
 		}
 
 		public override string[] Names(BoticoClient b)
 		{
-			return b.Loc.GetString("command.roulette.names").Split(',');
+			return b.Loc["command.roulette.names"].Split(',');
 		}
 
 		public override BoticoResponse OnUse(CommandArgs args)
 		{
 			if (args.Random.Next(0, 6) == 0)
-				return args.Botico.Loc.GetString("command.roulette.fail");
-			return args.Botico.Loc.GetString("command.roulette.win");
+				return args.Botico.Loc["command.roulette.fail"];
+			return args.Botico.Loc["command.roulette.win"];
 		}
 	}
 }

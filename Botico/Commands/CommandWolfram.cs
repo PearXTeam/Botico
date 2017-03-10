@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Drawing;
 using System.Text;
 using Botico.Model;
 using PearXLib.WebServices.Wolfram;
@@ -15,12 +14,12 @@ namespace Botico.Commands
 
 		public override string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.wolfram.desc").Replace("%cmd", b.GetCommandName(this));
+			return b.Loc["command.wolfram.desc"].Replace("%cmd", b.GetCommandName(this));
 		}
 
 		public override string[] Names(BoticoClient b)
 		{
-			return b.Loc.GetString("command.wolfram.names").Split(',');
+			return b.Loc["command.wolfram.names"].Split(',');
 		}
 
 		public override BoticoResponse OnUse(CommandArgs args)
@@ -34,7 +33,7 @@ namespace Botico.Commands
 					{
 						var v = Wolfram.Process(args.JoinedArgs, args.Botico.Config.WolframAppID);
 						StringBuilder sb = new StringBuilder();
-						List<Image> lst = new List<Image>();
+						List<BoticoImage> lst = new List<BoticoImage>();
 
 						int num = 0;
 						foreach (WolframPod pod in v)
@@ -43,7 +42,11 @@ namespace Botico.Commands
 							{
 								num++;
 								sb.AppendLine(num + " - " + pod.Title);
-								lst.Add(pod.Images[i].Image);
+								lst.Add(new BoticoImage
+								{
+									Data = pod.Images[i].Image,
+									Animated = false
+								});
 							}
 						}
 						return new BoticoResponse { Images = lst, Text = sb.ToString() };

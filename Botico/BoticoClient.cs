@@ -6,6 +6,7 @@ using Botico.Model;
 using Botico.Model.CustomCommands;
 using Newtonsoft.Json;
 using PearXLib;
+using PearXLib.I18n;
 
 namespace Botico
 {
@@ -22,7 +23,7 @@ namespace Botico
 		public BoticoClientProvider Provider { get; set; }
 		public string CmdSymbol => Config.CommandSymbol == null ? "" : Config.CommandSymbol.Value.ToString();
 
-		public Localization Loc;
+		public I18n Loc;
 		public BoticoConfig Config;
 		public List<BCommand> Commands = new List<BCommand>();
 		public Random Rand = new Random();
@@ -31,6 +32,7 @@ namespace Botico
 		public CommandThings CommandThings = new CommandThings();
 		public CommandQuestion CommandQuestion = new CommandQuestion();
 		public CommandDictionary CommandDict = new CommandDictionary();
+		public CommandWall CommandWall = new CommandWall();
 
 	    /// <summary>
 	    /// Initializes a new instance of the <see cref="T:Botico.BoticoClient"/> class.
@@ -56,6 +58,8 @@ namespace Botico
 			Commands.Add(new CommandTurn());
 			Commands.Add(new CommandWolfram());
 			Commands.Add(new CommandWho());
+			Commands.Add(CommandWall);
+			Commands.Add(new CommandReactor());
 		}
 
 		/// <summary>
@@ -78,6 +82,13 @@ namespace Botico
 				if (command[0] == ' ')
 					command = command.Remove(0, 1);
 			}
+			foreach (var alias in Config.Aliases)
+			{
+				if (command.ToLower().StartsWith(alias.Key, StringComparison.Ordinal))
+					command = alias.Value;
+			}
+			if (Config.Aliases.ContainsKey(command))
+				command = Config.Aliases[command];
 			foreach (BCommand cmd in Commands)
 			{
 				foreach (string cmdName in cmd.Names(this))
@@ -118,13 +129,6 @@ namespace Botico
 		/// </summary>
 		public void Init()
 		{
-			Log.Add("Extracting default languages...", "Botico", LogType.Info);
-			Directory.CreateDirectory(PathLangs);
-			File.WriteAllBytes(PathLangs + "ru_RU.lang", ResourceUtils.GetFromResources("Botico.EmbeddedLangs.ru_RU.lang"));
-			File.WriteAllBytes(PathLangs + "ru_RU.langinfo", ResourceUtils.GetFromResources("Botico.EmbeddedLangs.ru_RU.langinfo"));
-			File.WriteAllBytes(PathLangs + "en_US.lang", ResourceUtils.GetFromResources("Botico.EmbeddedLangs.en_US.lang"));
-			File.WriteAllBytes(PathLangs + "en_US.langinfo", ResourceUtils.GetFromResources("Botico.EmbeddedLangs.en_US.langinfo"));
-
 			Log.Add("Loading config files...", "Botico", LogType.Info);
 			if (File.Exists(PathConfig))
 				Config = JsonConvert.DeserializeObject<BoticoConfig>(File.ReadAllText(PathConfig));
@@ -158,7 +162,9 @@ namespace Botico
 					MessageTextLimit = 4096,
 					UseMarkdown = false,
 					LinksInsteadOfImages = false,
-					NewLines = true
+					NewLines = true,
+					Aliases = new Dictionary<string, string>
+					{ { "helpmepls", "help"}}
 				};
 				File.WriteAllText(PathConfig, JsonConvert.SerializeObject(Config, Formatting.Indented));
 			}
@@ -168,6 +174,8 @@ namespace Botico
 
 			if (File.Exists(CommandQuestion.PathQuestions))
 				CommandQuestion.Questions = JsonConvert.DeserializeObject<Dictionary<string, BoticoElement>>(File.ReadAllText(CommandQuestion.PathQuestions));
+			if (File.Exists(CommandWall.PathPosts))
+				CommandWall.Posts = JsonConvert.DeserializeObject<List<BoticoElement>>(File.ReadAllText(CommandWall.PathPosts));
 			
 			Log.Add("Loading dictionaries...", "Botico", LogType.Info);
 			CommandDict.Init(this);
@@ -210,7 +218,8 @@ namespace Botico
 			}
 
 			Log.Add("Done loading Botico!", "Botico", LogType.Info);
-			Loc = new Localization(PathLangs, Config.Language, "ru_RU");
+			Loc = new I18n(new I18nLoaderResources("Botico.Langs"), "ru_RU");
+			Loc.Load(Config.Language);
 		}
 
 		/// <summary>

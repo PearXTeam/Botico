@@ -1,4 +1,6 @@
-﻿namespace Botico.Model
+﻿using System.Collections.Generic;
+
+namespace Botico.Model
 {
 	/// <summary>
 	/// Configuration file for Botico.
@@ -16,5 +18,6 @@
 		public long MessageTextLimit { get; set; }
 		public bool LinksInsteadOfImages { get; set; }
 		public bool NewLines { get; set; }
+		public Dictionary<string, string> Aliases { get; set; }
 	}
 }

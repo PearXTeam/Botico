@@ -1,4 +1,4 @@
-﻿using Botico.Model;
+using Botico.Model;
 
 namespace Botico
 {
@@ -11,12 +11,12 @@ namespace Botico
 
 		public override string[] Names(BoticoClient b)
 		{
-			return b.Loc.GetString("command.who.names").Split(',');
+			return b.Loc["command.who.names"].Split(',');
 		}
 
 		public override string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.who.desc").Replace("%cmd", b.GetCommandName(this));
+			return b.Loc["command.who.desc"].Replace("%cmd", b.GetCommandName(this));
 		}
 
 		public override BoticoResponse OnUse(CommandArgs args)
@@ -26,7 +26,7 @@ namespace Botico
 				var usr = args.GroupChatMembers[args.Random.Next(0, args.GroupChatMembers.Length)];
 				return args.Botico.Provider.CreateMention(usr) + " - " + args.JoinedArgs.Replace("?", "") + ".";
 			}
-			return args.Botico.Loc.GetString("command.who.notgroupchat");
+			return args.Botico.Loc["command.who.notgroupchat"];
 		}
 	}
 }

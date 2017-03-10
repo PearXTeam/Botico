@@ -17,23 +17,23 @@ namespace Botico.Commands
 
 		public override string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.wiki.desc").Replace("%cmd", b.GetCommandName(this));
+			return b.Loc["command.wiki.desc"].Replace("%cmd", b.GetCommandName(this));
 		}
 
 		public override string[] Names(BoticoClient b)
 		{
-			return b.Loc.GetString("command.wiki.names").Split(',');
+			return b.Loc["command.wiki.names"].Split(',');
 		}
 
 		public override BoticoResponse OnUse(CommandArgs args)
 		{
-			string reference = args.Botico.Loc.GetString("command.wiki.reference");
+			string reference = args.Botico.Loc["command.wiki.reference"];
 			switch (args.Args.Length)
 			{
 				case 0:
 					return Description(args.Botico);
 				default:
-					if (args.Args[0] == args.Botico.Loc.GetString("command.wiki.random"))
+					if (args.Args[0] == args.Botico.Loc["command.wiki.random"])
 					{
 						var wikiSource = args.Botico.Config.WikiSources[args.Random.Next(0, args.Botico.Config.WikiSources.Length)];
 						string s = WebUtils.GetRedirectUrl(wikiSource.RandomURL);
@@ -44,10 +44,10 @@ namespace Botico.Commands
 							return shorten + " - " + "```" + name + "```";
 						return shorten + " - " + name;
 					}
-					if (args.Args[0] == args.Botico.Loc.GetString("command.wiki.list"))
+					if (args.Args[0] == args.Botico.Loc["command.wiki.list"])
 					{
 						StringBuilder sb = new StringBuilder();
-						sb.Append(args.Botico.Loc.GetString("command.wiki.wikis"));
+						sb.Append(args.Botico.Loc["command.wiki.wikis"]);
 						foreach (WikiSource src in args.Botico.Config.WikiSources)
 						{
 							sb.Append(src.FriendlyName);
@@ -69,9 +69,9 @@ namespace Botico.Commands
 									return v.query.pages.FirstOrDefault().Value.extract;
 								}
 							}
-							return args.Botico.Loc.GetString("command.wiki.reference.notFound");
+							return args.Botico.Loc["command.wiki.reference.notFound"];
 						}
-						return args.Botico.Loc.GetString("command.wiki.reference.error");
+						return args.Botico.Loc["command.wiki.reference.error"];
 					}
 					return Description(args.Botico);
 			}

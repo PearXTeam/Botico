@@ -8,12 +8,12 @@ namespace Botico.Commands
 	{
 		public override string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.help.desc");
+			return b.Loc["command.help.desc"];
 		}
 
 		public override string[] Names(BoticoClient b)
 		{
-			return b.Loc.GetString("command.help.names").Split(',');
+			return b.Loc["command.help.names"].Split(',');
 		}
 
 		public override BoticoResponse OnUse(CommandArgs args)
@@ -39,7 +39,7 @@ namespace Botico.Commands
 					else
 						sb.AppendLine(cmd.Description(args.Botico));
 				}
-				sb.Append(string.Format(args.Botico.Loc.GetString("command.help.page"), page, Math.Round((float)args.Botico.Commands.Count / onPage), args.Botico.GetCommandName(this)));
+				sb.Append(string.Format(args.Botico.Loc["command.help.page"], page, Math.Round((float)args.Botico.Commands.Count / onPage), args.Botico.GetCommandName(this)));
 			}
 			else
 			{

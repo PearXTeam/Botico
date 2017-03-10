@@ -12,7 +12,7 @@ namespace Botico
 
 		public override string[] Names(BoticoClient b)
 		{
-			return b.Loc.GetString("command.question.names").Split(',');
+			return b.Loc["command.question.names"].Split(',');
 		}
 
 		public override BoticoResponse OnUse(CommandArgs args)
@@ -28,7 +28,7 @@ namespace Botico
 
 		public override string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.question.desc");
+			return b.Loc["command.question.desc"];
 		}
 	}
 }

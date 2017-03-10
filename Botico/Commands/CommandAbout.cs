@@ -12,19 +12,19 @@ namespace Botico
 
 		public override string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.about.desc").Replace("%cmd", b.GetCommandName(this));
+			return b.Loc["command.about.desc"].Replace("%cmd", b.GetCommandName(this));
 		}
 
 		public override string[] Names(BoticoClient b)
 		{
-			return b.Loc.GetString("command.about.names").Split(',');
+			return b.Loc["command.about.names"].Split(',');
 		}
 
 		public override BoticoResponse OnUse(CommandArgs args)
 		{
 			var v = args.Botico.GetCommandFromString(args.JoinedArgs);
 			if (v == null)
-				return args.Botico.Loc.GetString("command.about.notFound");
+				return args.Botico.Loc["command.about.notFound"];
 			return v.Description(args.Botico);
 		}
 	}

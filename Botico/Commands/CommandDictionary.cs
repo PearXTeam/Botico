@@ -17,12 +17,12 @@ namespace Botico.Commands
 
 		public override string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.dictionary.desc").Replace("%cmd", b.GetCommandName(this));
+			return b.Loc["command.dictionary.desc"].Replace("%cmd", b.GetCommandName(this));
 		}
 
 		public override string[] Names(BoticoClient b)
 		{
-			return b.Loc.GetString("command.dictionary.names").Split(',');
+			return b.Loc["command.dictionary.names"].Split(',');
 		}
 
 		public override BoticoResponse OnUse(CommandArgs args)
@@ -32,10 +32,10 @@ namespace Botico.Commands
 				case 0:
 					return Description(args.Botico);
 				default:
-					if (args.Args[0] == args.Botico.Loc.GetString("command.dictionary.list"))
+					if (args.Args[0] == args.Botico.Loc["command.dictionary.list"])
 					{
 						StringBuilder sb = new StringBuilder();
-						sb.Append(args.Botico.Loc.GetString("command.dictionary.dicts"));
+						sb.Append(args.Botico.Loc["command.dictionary.dicts"]);
 						foreach (var v in args.Botico.Config.Dictionaries)
 						{
 							sb.Append(v.Name);
@@ -45,7 +45,7 @@ namespace Botico.Commands
 						sb.Append(".");
 						return sb.ToString();
 					}
-					if (args.Args[0] == args.Botico.Loc.GetString("command.dictionary.random"))
+					if (args.Args[0] == args.Botico.Loc["command.dictionary.random"])
 					{
 						return Words[args.Random.Next(0, Words.Length)];
 					}

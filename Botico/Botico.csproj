@@ -28,11 +28,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\pxvkb\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="PearXLib">
-      <HintPath>..\..\pxvkb\packages\PearXLib.1.2.17\lib\net40\PearXLib.dll</HintPath>
+      <HintPath>..\..\pxvkb\packages\Newtonsoft.Json.10.0.1-beta1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -68,21 +66,30 @@
     <Compile Include="Model\CommandSender.cs" />
     <Compile Include="Commands\CommandWho.cs" />
     <Compile Include="BoticoClientProvider.cs" />
+    <Compile Include="Commands\CommandWall.cs" />
+    <Compile Include="Commands\CommandReactor.cs" />
+    <Compile Include="Model\BoticoImage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
     <Folder Include="Model\" />
-    <Folder Include="EmbeddedLangs\" />
+    <Folder Include="Langs\" />
     <Folder Include="Model\CustomCommands\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <EmbeddedResource Include="Langs\ru_RU.lang" />
+    <EmbeddedResource Include="Langs\ru_RU.langinfo" />
+    <EmbeddedResource Include="Langs\en_US.lang" />
+    <EmbeddedResource Include="Langs\en_US.langinfo" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="EmbeddedLangs\ru_RU.lang" />
-    <EmbeddedResource Include="EmbeddedLangs\ru_RU.langinfo" />
-    <EmbeddedResource Include="EmbeddedLangs\en_US.lang" />
-    <EmbeddedResource Include="EmbeddedLangs\en_US.langinfo" />
+    <ProjectReference Include="..\..\PearXLib\PearXLib\PearXLib.csproj">
+      <Project>{4176C1E5-6FF0-44C1-B659-C248B6A743CF}</Project>
+      <Name>PearXLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

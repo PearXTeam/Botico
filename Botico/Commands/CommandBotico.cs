@@ -8,12 +8,12 @@ namespace Botico.Commands
 	{
 		public override string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.botico.desc");
+			return b.Loc["command.botico.desc"];
 		}
 
 		public override string[] Names(BoticoClient b)
 		{
-			return b.Loc.GetString("command.botico.names").Split(',');
+			return b.Loc["command.botico.names"].Split(',');
 		}
 
 		public override BoticoResponse OnUse(CommandArgs args)
@@ -22,9 +22,9 @@ namespace Botico.Commands
 			if (args.Botico.Config.NewLines)
 			{
 				sb.AppendLine("PearX Team's Botico");
-				sb.AppendLine(args.Botico.Loc.GetString("command.botico.runningOn") + Environment.OSVersion);
-				sb.AppendLine(args.Botico.Loc.GetString("command.botico.client") + args.Botico.Provider.Name);
-				sb.Append(args.Botico.Loc.GetString("command.botico.ramUsed") + GC.GetTotalMemory(true) / 1024 + " kB");
+				sb.AppendLine(args.Botico.Loc["command.botico.runningOn"] + Environment.OSVersion);
+				sb.AppendLine(args.Botico.Loc["command.botico.client"] + args.Botico.Provider.Name);
+				sb.Append(args.Botico.Loc["command.botico.ramUsed"] + GC.GetTotalMemory(true) / 1024 + " kB");
 			}
 			else
 			{

@@ -8,18 +8,18 @@ namespace Botico
 	{
 		public override string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.answer.desc");
+			return b.Loc["command.answer.desc"];
 		}
 
 		public override string[] Names(BoticoClient b)
 		{
-			return b.Loc.GetString("command.answer.names").Split(',');
+			return b.Loc["command.answer.names"].Split(',');
 		}
 
 		public override BoticoResponse OnUse(CommandArgs args)
 		{
 			if (args.Args.Length == 0)
-				return args.Botico.Loc.GetString("command.answer.incorrectUsage");
+				return args.Botico.Loc["command.answer.incorrectUsage"];
 			if (args.Botico.CommandQuestion.QuestionCache.ContainsKey(args.Sender.ID))
 			{
 				string q = args.Botico.CommandQuestion.QuestionCache[args.Sender.ID];
@@ -28,14 +28,14 @@ namespace Botico
 					if (BoticoUtils.IsOwner(args.Botico.CommandQuestion.Questions[q].From, args.Botico.Config))
 					{
 						if (!BoticoUtils.IsOwner(args.Sender, args.Botico.Config))
-							return args.Botico.Loc.GetString("command.answer.notPermitted");
+							return args.Botico.Loc["command.answer.notPermitted"];
 					}
 				}
-				args.Botico.CommandQuestion.Questions[q] = new BoticoElement { Content = args.JoinedArgs, From = args.Sender.ID };
+				args.Botico.CommandQuestion.Questions[q] = new BoticoElement(args.JoinedArgs, args.Sender.ID);
 				File.WriteAllText(CommandQuestion.PathQuestions, JsonConvert.SerializeObject(args.Botico.CommandQuestion.Questions, Formatting.Indented));
-				return args.Botico.Loc.GetString("command.answer");
+				return args.Botico.Loc["command.answer"];
 			}
-			return args.Botico.Loc.GetString("command.answer.notAsked");
+			return args.Botico.Loc["command.answer.notAsked"];
 		}
 	}
 }

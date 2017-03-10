@@ -1,4 +1,4 @@
-﻿command.help.names=help,commands
+command.help.names=help,commands
 command.help.desc=Command list.
 command.help=Commands available: 
 command.help.page=You're on page {0} of {1}. Use {2} <page>.

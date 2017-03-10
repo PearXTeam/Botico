@@ -12,12 +12,12 @@ namespace Botico.Commands
 
 		public override string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.random.desc").Replace("%cmd", b.GetCommandName(this));
+			return b.Loc["command.random.desc"].Replace("%cmd", b.GetCommandName(this));
 		}
 
 		public override string[] Names(BoticoClient b)
 		{
-			return b.Loc.GetString("command.random.names").Split(',');
+			return b.Loc["command.random.names"].Split(',');
 		}
 
 		public override BoticoResponse OnUse(CommandArgs args)
@@ -32,7 +32,7 @@ namespace Botico.Commands
 					{
 						return args.Random.NextLong(max).ToString();
 					}
-					return args.Botico.Loc.GetString("command.random.nan.max").Replace("%longMax", long.MaxValue.ToString());
+					return args.Botico.Loc["command.random.nan.max"].Replace("%longMax", long.MaxValue.ToString());
 				case 2:
 					if (long.TryParse(args.Args[0], out min))
 					{
@@ -40,11 +40,11 @@ namespace Botico.Commands
 						{
 							if(min <= max)
 								return args.Random.NextLong(max, min).ToString();
-							return args.Botico.Loc.GetString("command.random.minBiggerMax");
+							return args.Botico.Loc["command.random.minBiggerMax"];
 						}
-						return args.Botico.Loc.GetString("command.random.nan.max").Replace("%longMax", long.MaxValue.ToString());
+						return args.Botico.Loc["command.random.nan.max"].Replace("%longMax", long.MaxValue.ToString());
 					}
-					return args.Botico.Loc.GetString("command.random.nan.min").Replace("%longMax", long.MaxValue.ToString());
+					return args.Botico.Loc["command.random.nan.min"].Replace("%longMax", long.MaxValue.ToString());
 
 			}
 		}

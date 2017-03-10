@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
+using System.IO;
 using Botico.Model;
 
 namespace Botico.Commands
@@ -32,14 +32,19 @@ namespace Botico.Commands
 
 		public override BoticoResponse OnUse(CommandArgs args)
 		{
-			List<Image> imgs = new List<Image>();
+			List<BoticoImage> imgs = new List<BoticoImage>();
 			if (ImagesPath != null)
 			{
 				if (ImagesPath.Length > 0)
 				{
 					foreach(string path in ImagesPath)
 					{
-						imgs.Add(Image.FromFile(BoticoClient.Path + path));
+						string absPath = BoticoClient.Path + path;
+						imgs.Add(new BoticoImage
+						{
+							Animated = absPath.EndsWith(".gif", System.StringComparison.Ordinal),
+							Data = File.ReadAllBytes(absPath)
+						});
 					}
 				}
 			}

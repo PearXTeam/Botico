@@ -12,12 +12,12 @@ namespace Botico
 
 		public override string Description(BoticoClient b)
 		{
-			return b.Loc.GetString("command.turn.desc").Replace("%cmd", b.GetCommandName(this));
+			return b.Loc["command.turn.desc"].Replace("%cmd", b.GetCommandName(this));
 		}
 
 		public override string[] Names(BoticoClient b)
 		{
-			return b.Loc.GetString("command.turn.names").Split(',');
+			return b.Loc["command.turn.names"].Split(',');
 		}
 
 		public override BoticoResponse OnUse(CommandArgs args)

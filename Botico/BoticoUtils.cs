@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Botico.Model;
 
 namespace Botico
@@ -7,7 +7,7 @@ namespace Botico
 	{
 		public static string GenAnswer(BoticoClient botico)
 		{
-			string[] s = botico.Loc.GetString("answers").Split(';');
+			string[] s = botico.Loc["answers"].Split(';');
 			return s[botico.Rand.Next(0, s.Length)];
 		}
 

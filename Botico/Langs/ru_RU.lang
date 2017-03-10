@@ -1,4 +1,4 @@
-﻿command.help.names=помощь,команды,help,commands
+command.help.names=помощь,команды,help,commands
 command.help.desc=Список команд.
 command.help=Доступны следующие команды: 
 command.help.page=Вы сейчас на странице {0} из {1}. Введите {2} <страница>.
@@ -76,5 +76,13 @@ command.wolfram.desc=%cmd <условие> - решает что-либо мат
 command.who.names=кто
 command.who.desc=%cmd <что> - узнать, кто из чата <что>.
 command.who.notgroupchat=Вы не в групповом чате.
+
+command.wall.names=стена,стенка,стеночка
+command.wall.post=написать
+command.wall.desc=%cmd написать <сообщение> - написать на стене что-то.\n%cmd - прочитать стену.
+command.wall.sent=Успешно написано на стене.
+
+command.reactor.names=реактор,joy,jr,joyreactor,джой,джойреактор,мем,мемы
+command.reactor.desc=%cmd <тег> - рандомная картинка по тегу с JoyReactor
 
 answers=Да;Нет;Наверное;Возможно;Скорее да, чем нет;Скорее нет, чем да;А ты как думаешь?;Ну я даже не знаю...
