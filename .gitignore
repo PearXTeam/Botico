@@ -1,0 +1,6 @@
+Botico/obj/*
+Botico/bin/*
+.vs/*
+packages/*
+.directory
+*.userprefs
